@@ -4,29 +4,34 @@ using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
-    [SerializeField] private float offset;
+    [SerializeField] private float distance;
     [SerializeField] private LineRenderer line;
     [SerializeField] private Transform weaponPoint;
 
     private Camera mainCam;
+    private Vector2 direction;
 
     private void Start()
     {
         mainCam = Camera.main;
+        direction = transform.up;
     }
 
     private void Update()
     {
         Vector2 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
 
+        if (Vector2.Distance(mousePos, transform.position) > distance)
+        {
+            direction = (mousePos - (Vector2)transform.position).normalized;
+        }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        line.SetPosition(0, weaponPoint.position);
-        line.SetPosition(1, weaponPoint.position + (Vector3)direction * 100f);
+        
+
 
     }
 }
