@@ -5,19 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Weapon: MonoBehaviour
 {
-    public WeaponType weaponType;
-    public PlayerAnimationControl playerAnimation = PlayerAnimationControl.Instance;
+    protected PlayerAnimationControl playerAnimation;
+    protected PlayerWeaponScript weaponScript;
 
+    protected void Start()
+    {
+        playerAnimation = PlayerAnimationControl.Instance;
+        weaponScript = PlayerWeaponScript.Instance;
+    }
+
+    public abstract void Prep();
     public abstract void Shoot();
     public abstract void StopShooting();
     public abstract void Reload();
 
-}
-
-public enum WeaponType
-{
-    knife,
-    handgun,
-    shotgun,
-    rifle
 }

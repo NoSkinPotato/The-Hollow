@@ -5,25 +5,18 @@ using UnityEngine;
 
 public class Knife : Weapon
 {
-    public Knife()
-    {
-        weaponType = WeaponType.knife;
-    }
-
     public override void Reload()
     {
         //Nothing
     }
 
+    public override void Prep()
+    {
+        
+    }
+
     public override void Shoot()
     {
-        if (playerAnimation == null)
-        {
-            Debug.Log("Player Animation Null");
-            return;
-        }
-
-
         if (playerAnimation.GetStopAnimation() == false)
         {
             playerAnimation.playerAnimator.SetInteger("ActionIndex", 2);
