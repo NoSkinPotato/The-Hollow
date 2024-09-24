@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PlayerAnimationControl : MonoBehaviour
 {
-    public static PlayerAnimationControl Instance;
-    public Animator playerAnimator;
+    public static PlayerAnimationControl Instance { get; private set; }
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -18,6 +17,9 @@ public class PlayerAnimationControl : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
+    public Animator playerAnimator;
 
     public void PlayAnimation(string name, int index)
     {
@@ -32,7 +34,7 @@ public class PlayerAnimationControl : MonoBehaviour
         playerAnimator.SetBool("StopAnimation", true);
     }
 
-    private void EndAnimation()
+    public void EndAnimation()
     {
         playerAnimator.SetBool("StopAnimation", false);
     }

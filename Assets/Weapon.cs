@@ -6,14 +6,7 @@ using UnityEngine;
 public abstract class Weapon: MonoBehaviour
 {
     public WeaponType weaponType;
-    protected PlayerAnimationControl playerAnimation;
-    protected PlayerWeaponScript weaponScript;
-
-    protected virtual void Awake()
-    {
-        playerAnimation = PlayerAnimationControl.Instance;
-        weaponScript = PlayerWeaponScript.Instance;
-    }
+    public PlayerAnimationControl playerAnimation = PlayerAnimationControl.Instance;
 
     public abstract void Shoot();
     public abstract void StopShooting();
