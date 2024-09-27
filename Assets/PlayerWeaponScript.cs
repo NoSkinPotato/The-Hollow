@@ -72,8 +72,6 @@ public class PlayerWeaponScript : MonoBehaviour
         }
         
 
-        
-
     }
 
     private void WeaponSwitching()
