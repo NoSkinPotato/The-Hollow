@@ -113,7 +113,7 @@ public class PlayerWeaponScript : MonoBehaviour
             equippedWeaponIndex = x;
             StartCoroutine(SwitchTimer());
         }
-            
+           
     }
 
     private IEnumerator SwitchTimer()
@@ -132,7 +132,7 @@ public class PlayerWeaponScript : MonoBehaviour
         }
         else
         {
-            SwitchWeapon(equippedWeaponIndex++);
+            SwitchWeapon(equippedWeaponIndex + 1);
         }
     }
 
@@ -144,7 +144,7 @@ public class PlayerWeaponScript : MonoBehaviour
         }
         else
         {
-            SwitchWeapon(equippedWeaponIndex--);
+            SwitchWeapon(equippedWeaponIndex - 1);
         }
     }
 

@@ -10,19 +10,13 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerAnimationControl animationControl;
 
-    private Camera mainCam;
 
     private void Start()
     {
-        mainCam = Camera.main;
         animationControl = PlayerAnimationControl.Instance;
     }
 
-    void Update()
-    {
-        mainCam.transform.position = (Vector2)transform.position;
-
-    }
+    
 
     private void FixedUpdate()
     {
