@@ -84,9 +84,10 @@ public class Shotgun : Weapon
 
             StartCoroutine(ShootVisual(visualSeconds, lineRenderers[i]));
 
-            cameraControl.Shake(shootDirection, shakeDuration, shakeDistance, shakeStrength);
+            
         }
 
+        cameraControl.Shake(-weaponScript.direction, shakeDuration, shakeDistance, shakeStrength);
     }
 
     private IEnumerator ShootVisual(float seconds, LineRenderer line)

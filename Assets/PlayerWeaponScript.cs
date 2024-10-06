@@ -20,7 +20,6 @@ public class PlayerWeaponScript : MonoBehaviour
     }
 
     [SerializeField] private float distance;
-    public LineRenderer line;
 
     private Camera mainCam;
     [HideInInspector]

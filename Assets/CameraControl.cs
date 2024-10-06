@@ -49,9 +49,6 @@ public class CameraControl : MonoBehaviour
 
     public void Shake(Vector2 direction, float shakeDuration, float distance, float strength)
     {
-        if (startShake == true)
-            return;
-
         startShake = true;
         shakeTimeRemaining = shakeDuration;
         this.shakeDuration = shakeDuration;

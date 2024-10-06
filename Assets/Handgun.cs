@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 
 public class Handgun : Weapon
 {
@@ -10,6 +12,12 @@ public class Handgun : Weapon
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private float gunSeconds;
+    [SerializeField] private Light2D weaponLight;
+    [SerializeField] private SpriteRenderer fireEffects;
+    [SerializeField] private float shakeDistance;
+    [SerializeField] private float shakeStrength;
+    [SerializeField] private float shakeDuration;
+
 
     public override void Prep()
     {
@@ -53,16 +61,20 @@ public class Handgun : Weapon
         StartCoroutine(ShootVisual(gunSeconds));
 
 
-
+        cameraControl.Shake(-weaponScript.direction, shakeDuration, shakeDistance, shakeStrength);
     }
 
     private IEnumerator ShootVisual(float seconds)
     {
         lineRenderer.enabled = true;
+        weaponLight.enabled = true;
+        fireEffects.enabled = true;
         yield return new WaitForSeconds(seconds);
         lineRenderer.enabled = false;
+        fireEffects.enabled = false;
+        weaponLight.enabled = false;
     }
-    
+
     public override void StopShooting()
     {
         //Nope
