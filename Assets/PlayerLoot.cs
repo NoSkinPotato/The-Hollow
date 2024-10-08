@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class PlayerLoot : MonoBehaviour
 {
-    private InventorySystem inventorySystem = InventorySystem.Instance;
+    private InventorySystem inventorySystem;
+
+    private void Start()
+    {
+        inventorySystem = InventorySystem.Instance;
+    }
 
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        inventorySystem.Loot(collision.GetComponent<Item>());
+        if (inventorySystem.Loot(collision.GetComponent<ItemContainer>().containedItem)){
+            Destroy(collision.gameObject);
+
+        }
     }
 
 }

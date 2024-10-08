@@ -20,37 +20,43 @@ public class InventorySystem : MonoBehaviour
     }
 
     [SerializeField] private List<Item> ItemsInInventory = new List<Item>();
+    [SerializeField] private ItemDatabase inventoryDatabase;
+    [SerializeField] private Dictionary<string, int> database = new Dictionary<string, int>();
 
+    private int amountLooted;
 
 
     public bool Loot(Item item)
     {
-        //CheckForInventory
-        if (CheckForSpace(item) == false)
-            return false;
+        amountLooted = 0;
+        /*
+        while (InsertItem(item) == true) ;
 
+        */
 
-        ItemsInInventory.Add(item);
-
+        //Add Notifications
+        Debug.Log("Looted: " + amountLooted + "x " + item.type.ToString());
         return true;
     }
 
     public void GetItem(ItemType type, int value)
     {
-        
-
-
 
     }
-
-    private bool CheckForSpace(Item item)
+    /*
+    private bool InsertItem(Item item)
     {
-        return false;
+        if (InsertItem()) return true;
+
     }
 
+    private bool InsertOnSpace(Item item)
+    {
 
+    }
 
+    private bool InsertOnSlot(Item item)
+    {
 
-
-
+    }*/
 }

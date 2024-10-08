@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemDatabase : ScriptableObject
 {
     public List<ItemStats> itemDatabase = new List<ItemStats>();
+    public int MaxInventorySlot = 10;
 }
 
 [System.Serializable]

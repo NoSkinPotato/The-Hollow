@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Item : MonoBehaviour
+public class Item
 {
 
     public ItemType type;
-    public float value;
+    public int value;
 
+
+    public Item(ItemType type, int value)
+    {
+        this.type = type;
+        this.value = value;
+    }
 
 }
 
