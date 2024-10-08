@@ -13,8 +13,8 @@ public class doorScript : MonoBehaviour
     private float axis;
     [SerializeField] private float doorOpenSpeed = 5f;
 
-    [SerializeField] private Collider2D leftSideCollider;
-    [SerializeField] private Collider2D rightSideCollider;
+    [SerializeField] private Transform leftSide;
+    [SerializeField] private Transform rightSide;
 
     [SerializeField] private bool allowDoor = true;
 
@@ -119,56 +119,16 @@ public class doorScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && allowDoor)
         {
-            Vector2 localCollisionPoint = collision.transform.position - transform.position;
 
-            if ((int)axis == 0)
+            if(Vector2.Distance(collision.transform.position, leftSide.position) < Vector2.Distance(collision.transform.position, rightSide.position))
             {
-                Debug.Log("Vertical");
-                if (localCollisionPoint.x < 0)
-                {
-                    LeftDoorCollision();
-                }
-                else if (localCollisionPoint.x > 0)
-                {
-                    RightDoorCollision();
-                }
+                LeftDoorCollision();
             }
-            else if((int)axis == 90)
+            else
             {
-                Debug.Log("Horizontal");
-                if (localCollisionPoint.y > 0)
-                {
-                    RightDoorCollision();
-                }
-                else if (localCollisionPoint.y < 0)
-                {
-                    
-                    LeftDoorCollision();
-                }
-
-            }else if((int)axis == -90)
-            {
-                if (localCollisionPoint.y > 0)
-                {
-                    LeftDoorCollision(); 
-                }
-                else if (localCollisionPoint.y < 0)
-                {
-                    RightDoorCollision();
-                }
-            }else if ((int)axis == 180)
-            {
-                if (localCollisionPoint.x < 0)
-                {
-                    RightDoorCollision();
-                   
-                }
-                else if (localCollisionPoint.x > 0)
-                {
-                    LeftDoorCollision();
-                }
+                RightDoorCollision();
             }
-
+            
         }
     }
 
