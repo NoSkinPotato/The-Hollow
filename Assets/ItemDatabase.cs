@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu]
+public class ItemDatabase : ScriptableObject
+{
+    public List<ItemStats> itemDatabase = new List<ItemStats>();
+}
+
+[System.Serializable]
+public class ItemStats
+{
+    public ItemType type;
+    public int maxValue;
+    public int ValuePerAmount;
+}
