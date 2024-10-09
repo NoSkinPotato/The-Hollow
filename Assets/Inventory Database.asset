@@ -16,4 +16,10 @@ MonoBehaviour:
   - type: 0
     maxValue: 25
     ValuePerAmount: 50
-  MaxInventorySlot: 2
+  - type: 1
+    maxValue: 10
+    ValuePerAmount: 3
+  - type: 2
+    maxValue: 25
+    ValuePerAmount: 10
+  MaxInventorySlot: 3
