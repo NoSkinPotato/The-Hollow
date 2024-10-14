@@ -15,8 +15,32 @@ public class PlayerLoot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (inventorySystem.Loot(collision.GetComponent<ItemContainer>().containedItem)){
-            Destroy(collision.gameObject);
+        if (collision.gameObject.CompareTag("Loot"))
+        {
+            ItemContainer itemContainer = collision.gameObject.GetComponent<ItemContainer>();
+            if (itemContainer.justDropped)
+                return;
+
+            if (inventorySystem.Loot(itemContainer.containedItem))
+            {
+                Destroy(collision.gameObject);
+
+            }
+        }
+
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Loot"))
+        {
+            ItemContainer itemContainer = collision.gameObject.GetComponent<ItemContainer>();
+
+            if (itemContainer.justDropped)
+            {
+                itemContainer.justDropped = false;
+            }
 
         }
     }

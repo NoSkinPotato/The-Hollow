@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class ItemContainer : MonoBehaviour
 {
+
+    public bool justDropped = false;
+
     public Item containedItem;
 }

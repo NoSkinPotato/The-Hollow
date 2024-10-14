@@ -15,4 +15,5 @@ public class ItemStats
     public ItemType type;
     public int maxValue;
     public int ValuePerAmount;
+    public bool OnHealth;
 }

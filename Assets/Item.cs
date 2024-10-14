@@ -8,13 +8,16 @@ public class Item
 
     public ItemType type;
     public int value;
+    public bool useOnHealth;
 
 
-    public Item(ItemType type, int value)
+    public Item(ItemType type, int value, bool useOnHealth)
     {
         this.type = type;
         this.value = value;
+        this.useOnHealth = useOnHealth;
     }
+
 
 }
 
