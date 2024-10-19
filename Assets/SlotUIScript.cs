@@ -13,14 +13,13 @@ public class SlotUIScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI amountMesh;
 
     public bool clicked = false;
-    public Item containedItem;
+    public Item containedItem = null;
     private InventorySystem inventorySystem;
-    private RectTransform transform;
 
     private void Start()
     {
         inventorySystem = InventorySystem.Instance;
-        transform = GetComponent<RectTransform>();
+        containedItem = null;
     }
 
 
@@ -45,6 +44,10 @@ public class SlotUIScript : MonoBehaviour
 
     public void OnClick()
     {
+        if (containedItem == null)
+            return;
+
+
         if(clicked == true)
         {
             inventorySystem.DeactivateDisplayInteraction();

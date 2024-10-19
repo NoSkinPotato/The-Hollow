@@ -29,10 +29,12 @@ public class PlayerWeaponScript : MonoBehaviour
     private bool justShoot = false;
     [SerializeField] private int equippedWeaponIndex = 0;
     private PlayerAnimationControl playerAnimation;
+    private InventorySystem inventorySystem;
     bool onSwitch = false;
 
     private void Start()
     {
+        inventorySystem = InventorySystem.Instance;
         playerAnimation = PlayerAnimationControl.Instance;
         mainCam = Camera.main;
         direction = transform.up;
@@ -40,6 +42,8 @@ public class PlayerWeaponScript : MonoBehaviour
 
     private void Update()
     {
+        if (inventorySystem.inventoryOpen == true)
+            return;
 
         Aim();
 

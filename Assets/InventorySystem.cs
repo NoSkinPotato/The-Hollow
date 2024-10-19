@@ -25,15 +25,20 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] private GameObject slotObject;
     [SerializeField] private InventoryInteraction inventoryDisplay;
     [SerializeField] private ItemContainer lootObject;
+    [SerializeField] private RectTransform inventoryUI;
+    [SerializeField] private float inventoryDuration = 0.5f;
 
     private List<SlotUIScript> allSlots = new List<SlotUIScript>();
 
     private int amountLooted;
-    private PlayerWeaponScript playerScript;
+    private PlayerAnimationControl playerScript;
+    public bool inventoryOpen = false;
+
+    bool updatingInventory = false;
 
     private void Start()
     {
-        playerScript = PlayerWeaponScript.Instance;
+        playerScript = PlayerAnimationControl.Instance;
 
         //SyncWithUI
 
@@ -41,10 +46,22 @@ public class InventorySystem : MonoBehaviour
 
     }
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && updatingInventory == false && playerScript.GetStopAnimation() == false)
+        {
+            updatingInventory = true;
+            inventoryOpen = !inventoryOpen;
+
+            playerScript.playerAnimator.SetBool("OnInventory", inventoryOpen);
+            StartCoroutine(SetInventoryUI());
+
+        }
+    }
+
     private void StartSync()
     {
-       
-
         //MaxInventory
         for (int i = 0; i < inventoryDatabase.MaxInventorySlot; i++)
         {
@@ -212,13 +229,33 @@ public class InventorySystem : MonoBehaviour
     
     }
 
-    public void CloseInventory()
+    private IEnumerator SetInventoryUI()
     {
+        Vector2 pos = inventoryUI.position;
+        Vector2 originalPos = pos;
 
-    }
+        pos.x *= -1;
 
-    public void OpenInventory()
-    {
+        Vector2 targetPos = pos;
+
+        float timeElapsed = 0;
+
+        while (timeElapsed < inventoryDuration)
+        {
+            float t = timeElapsed / inventoryDuration;
+
+            inventoryUI.position = Vector2.Lerp(originalPos, targetPos, t);
+
+            timeElapsed += Time.deltaTime;
+
+
+
+            yield return null;
+        }
+
+
+        inventoryUI.position = targetPos;
+        updatingInventory = false;
 
     }
 
