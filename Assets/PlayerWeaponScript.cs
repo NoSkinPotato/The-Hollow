@@ -24,6 +24,7 @@ public class PlayerWeaponScript : MonoBehaviour
     private Camera mainCam;
     [HideInInspector]
     public Vector2 direction;
+    public PlayerState playerState;
 
     public List<Weapon> weapons = new List<Weapon>();
     private bool justShoot = false;
@@ -34,6 +35,9 @@ public class PlayerWeaponScript : MonoBehaviour
 
     private void Start()
     {
+
+        playerState = PlayerState.OnControl;
+
         inventorySystem = InventorySystem.Instance;
         playerAnimation = PlayerAnimationControl.Instance;
         mainCam = Camera.main;
@@ -42,7 +46,7 @@ public class PlayerWeaponScript : MonoBehaviour
 
     private void Update()
     {
-        if (inventorySystem.inventoryOpen == true)
+        if (playerState != PlayerState.OnControl)
             return;
 
         Aim();
@@ -163,4 +167,9 @@ public class PlayerWeaponScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
+}
+
+public enum PlayerState
+{
+    OnControl, OffControl
 }

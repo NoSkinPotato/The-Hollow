@@ -32,6 +32,7 @@ public class InventorySystem : MonoBehaviour
 
     private int amountLooted;
     private PlayerAnimationControl playerScript;
+    private PlayerWeaponScript playerWeaponScript;
     public bool inventoryOpen = false;
 
     bool updatingInventory = false;
@@ -39,6 +40,7 @@ public class InventorySystem : MonoBehaviour
     private void Start()
     {
         playerScript = PlayerAnimationControl.Instance;
+        playerWeaponScript = PlayerWeaponScript.Instance;
 
         //SyncWithUI
 
@@ -51,8 +53,15 @@ public class InventorySystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab) && updatingInventory == false && playerScript.GetStopAnimation() == false)
         {
+            if (inventoryOpen == false)
+                playerWeaponScript.playerState = PlayerState.OffControl;
+            else
+                playerWeaponScript.playerState = PlayerState.OnControl;
+
             updatingInventory = true;
             inventoryOpen = !inventoryOpen;
+
+            inventoryDisplay.gameObject.SetActive(false);
 
             playerScript.playerAnimator.SetBool("OnInventory", inventoryOpen);
             StartCoroutine(SetInventoryUI());

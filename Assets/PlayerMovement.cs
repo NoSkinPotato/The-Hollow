@@ -9,17 +9,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     private PlayerAnimationControl animationControl;
+    private PlayerWeaponScript weaponScript;
 
 
     private void Start()
     {
         animationControl = PlayerAnimationControl.Instance;
+        weaponScript = PlayerWeaponScript.Instance;
     }
 
     
 
     private void FixedUpdate()
     {
+        if (weaponScript.playerState != PlayerState.OnControl)
+            return;
+
+
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         rb.position += new Vector2(horizontal, vertical).normalized * Time.fixedDeltaTime * movementSpeed;
@@ -40,3 +47,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
+
