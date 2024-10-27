@@ -20,9 +20,9 @@ public class doorScript : MonoBehaviour
 
     private void Start()
     {
-        originalAxis = transform.rotation.z;
+        originalAxis = transform.rotation.eulerAngles.z;
         axis = originalAxis;
-
+        Debug.Log(axis);
     }
 
     private void Update()
