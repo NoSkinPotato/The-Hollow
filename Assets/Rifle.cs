@@ -21,8 +21,11 @@ public class Rifle : Weapon
     [SerializeField] private float maxRecoil = 20;
     [Range(0f, .5f)]
     [SerializeField] private float recoilAcceleration;
-    
- 
+
+    [SerializeField] private int currMagazine;
+    [SerializeField] private int maxMagazine;
+
+
     private bool isShooting = false;
     private float recoil = 0;
     
@@ -38,16 +41,15 @@ public class Rifle : Weapon
             recoil -= Time.deltaTime * recoilAcceleration * 2;
         }
 
-
-
-
-
         if (isShooting == true && playerAnimation.GetStopAnimation() == false)
         {
+            if (currMagazine <= 0)
+                return;
+
+
             playerAnimation.playerAnimator.SetInteger("ActionIndex", 2);
             ShootLogic();
             playerAnimation.StopAnimation();
-
             
         }
 
@@ -55,9 +57,30 @@ public class Rifle : Weapon
 
     public override void Reload()
     {
+        Item rifleAmmo = inventorySystem.ItemsInInventory.Find(x => x.type == ItemType.RifleAmmo && x.value > 0);
+        if (rifleAmmo == null)
+            return;
+
         playerAnimation.PlayAnimation("ActionIndex", 3);
     }
 
+    public override void FillMagazine()
+    {
+        int ammoInInventory = inventorySystem.CountItemsByType(ItemType.RifleAmmo);
+        int difference = maxMagazine - currMagazine;
+
+        if (ammoInInventory > difference)
+        {
+            currMagazine = maxMagazine;
+        }
+        else
+        {
+            currMagazine += ammoInInventory;
+        }
+
+        inventorySystem.UseItem(ItemType.RifleAmmo, difference);
+
+    }
     public override void Shoot()
     {
         if (playerAnimation.GetStopAnimation() == false && isShooting == false)
@@ -86,10 +109,7 @@ public class Rifle : Weapon
 
     private void ShootLogic()
     {
-        if (EnoughAmmo() == false)
-        {
-            return;
-        }
+        currMagazine--;
 
         Vector2 direction = GetShotDirection(recoil);
 
@@ -97,6 +117,8 @@ public class Rifle : Weapon
         lineRenderer.SetPosition(0, weaponPoint.position);
         if (hit.collider != null)
         {
+            weaponScript.DamageEnemy(hit.collider, WeaponDamage);
+
             lineRenderer.SetPosition(1, hit.point);
         }
         else
@@ -126,9 +148,5 @@ public class Rifle : Weapon
     }
 
 
-    private bool EnoughAmmo()
-    {
-        //Add Inventory stuff
-        return true;
-    }
+   
 }

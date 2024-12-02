@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Knife : Weapon
 {
+    bool setKnifeDamage = false;
+
     public override void Reload()
     {
         //Nothing
@@ -12,6 +14,17 @@ public class Knife : Weapon
 
     public override void Prep()
     {
+        if (!setKnifeDamage)
+        {
+            weaponScript.knifeDamage = WeaponDamage;
+            setKnifeDamage = true;
+        }
+
+    }
+
+    public override void FillMagazine()
+    {
+        throw new System.NotImplementedException();
         
     }
 

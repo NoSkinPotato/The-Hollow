@@ -11,7 +11,7 @@ public class doorScript : MonoBehaviour
 
     private float originalAxis;
     private float axis;
-    [SerializeField] private float doorOpenSpeed = 5f;
+    private float doorOpenSpeed = 5f;
 
     [SerializeField] private Transform leftSide;
     [SerializeField] private Transform rightSide;
@@ -22,7 +22,6 @@ public class doorScript : MonoBehaviour
     {
         originalAxis = transform.rotation.eulerAngles.z;
         axis = originalAxis;
-        Debug.Log(axis);
     }
 
     private void Update()
@@ -120,7 +119,9 @@ public class doorScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && allowDoor)
         {
 
-            if(Vector2.Distance(collision.transform.position, leftSide.position) < Vector2.Distance(collision.transform.position, rightSide.position))
+            doorOpenSpeed = collision.gameObject.GetComponent<PlayerMovement>().currentSpeed * 25f;
+
+            if (Vector2.Distance(collision.transform.position, leftSide.position) < Vector2.Distance(collision.transform.position, rightSide.position))
             {
                 LeftDoorCollision();
             }
@@ -128,13 +129,16 @@ public class doorScript : MonoBehaviour
             {
                 RightDoorCollision();
             }
-            
+
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
         }
     }
 
     private void RightDoorCollision()
     {
-        Debug.Log("Right Collision");
         if (openDoor == false && closeDoor == false)
         {
             closeDoor = true;
@@ -146,7 +150,6 @@ public class doorScript : MonoBehaviour
     }
     private void LeftDoorCollision()
     {
-        Debug.Log("Left Collision");
         if (openDoor == true && closeDoor == false)
         {
             closeDoor = true;
@@ -156,6 +159,5 @@ public class doorScript : MonoBehaviour
         openDoor = false;
         closeDoor = false;
     }
-
 
 }

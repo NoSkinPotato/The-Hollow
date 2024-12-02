@@ -6,6 +6,8 @@ public class PlayerAnimationControl : MonoBehaviour
 {
     public static PlayerAnimationControl Instance { get; private set; }
 
+    public Transform playerPosition;
+
     private void Awake()
     {
         if (Instance == null)

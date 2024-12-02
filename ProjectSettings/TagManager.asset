@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Loot
+  - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - Player
   - Enemies
-  - 
+  - Floor
   - 
   - 
   - 
@@ -39,11 +41,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Walls
     uniqueID: 3962619091
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Player
     uniqueID: 3845204539

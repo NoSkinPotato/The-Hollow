@@ -33,10 +33,13 @@ public class PlayerWeaponScript : MonoBehaviour
     private InventorySystem inventorySystem;
     bool onSwitch = false;
 
+    [HideInInspector]
+    public float knifeDamage;
+
     private void Start()
     {
 
-        playerState = PlayerState.OnControl;
+        playerState = PlayerState.OnAllControl;
 
         inventorySystem = InventorySystem.Instance;
         playerAnimation = PlayerAnimationControl.Instance;
@@ -46,7 +49,7 @@ public class PlayerWeaponScript : MonoBehaviour
 
     private void Update()
     {
-        if (playerState != PlayerState.OnControl)
+        if (playerState == PlayerState.RunControl || playerState == PlayerState.OffControl)
             return;
 
         Aim();
@@ -167,9 +170,38 @@ public class PlayerWeaponScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
+
+    public void ReloadWeapon(int weaponIndex)
+    {
+        weapons[weaponIndex].FillMagazine();
+    }
+
+    public void DamageEnemy(Collider2D collision, float damage)
+    {
+        EnemyStatistics stats = collision.GetComponent<EnemyStatistics>();
+        if (stats != null) {
+
+            stats.DamageEnemy(damage);
+        }
+        else
+        {
+            Debug.Log("Stats script not found");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            DamageEnemy(collision, knifeDamage);
+        }
+    }
+
+    
+
 }
 
 public enum PlayerState
 {
-    OnControl, OffControl
+    OnAllControl, OffControl, RunControl, NoMovementControl
 }
