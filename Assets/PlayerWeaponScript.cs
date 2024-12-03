@@ -54,6 +54,8 @@ public class PlayerWeaponScript : MonoBehaviour
 
         Aim();
 
+        if (onSwitch == true) return;
+
         playerAnimation.playerAnimator.SetInteger("WeaponIndex", equippedWeaponIndex);
 
         weapons[equippedWeaponIndex].Prep();
@@ -75,12 +77,8 @@ public class PlayerWeaponScript : MonoBehaviour
             weapons[equippedWeaponIndex].Reload();
         }
 
-        if (onSwitch == false)
-        {
-            WeaponSwitching();
+        WeaponSwitching();
 
-        }
-        
 
     }
 
@@ -121,17 +119,13 @@ public class PlayerWeaponScript : MonoBehaviour
         if (weapons.Count - 1 >= x)
         {
             equippedWeaponIndex = x;
-            StartCoroutine(SwitchTimer());
         }
            
     }
 
-    private IEnumerator SwitchTimer()
+    public void OnSwitchControl(bool x)
     {
-        onSwitch = true;
-        yield return new WaitForSeconds(0.5f);
-        onSwitch = false;
-
+        onSwitch = x;
     }
 
     private void nextWeaponIndex()
@@ -180,7 +174,6 @@ public class PlayerWeaponScript : MonoBehaviour
     {
         EnemyStatistics stats = collision.GetComponent<EnemyStatistics>();
         if (stats != null) {
-
             stats.DamageEnemy(damage);
         }
         else

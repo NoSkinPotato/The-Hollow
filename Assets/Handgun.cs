@@ -88,11 +88,7 @@ public class Handgun : Weapon
 
     private void ShootLogic()
     {
-        if (EnoughAmmo() == false)
-        {
-
-            return;
-        }
+        if (EnoughAmmo() == false) return;
             
         StartCoroutine(ShootVisual(gunSeconds));
 
