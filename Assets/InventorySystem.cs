@@ -19,7 +19,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    [SerializeField] private List<Item> ItemsInInventory = new List<Item>();
+    public List<Item> ItemsInInventory = new List<Item>();
     [SerializeField] private ItemDatabase inventoryDatabase;
     [SerializeField] private Transform UIList;
     [SerializeField] private GameObject slotObject;
@@ -56,7 +56,7 @@ public class InventorySystem : MonoBehaviour
             if (inventoryOpen == false)
                 playerWeaponScript.playerState = PlayerState.OffControl;
             else
-                playerWeaponScript.playerState = PlayerState.OnControl;
+                playerWeaponScript.playerState = PlayerState.OnAllControl;
 
             updatingInventory = true;
             inventoryOpen = !inventoryOpen;
@@ -267,5 +267,46 @@ public class InventorySystem : MonoBehaviour
         updatingInventory = false;
 
     }
+
+
+    public int CountItemsByType(ItemType type)
+    {
+        int x = 0;
+
+        foreach(Item t in ItemsInInventory)
+        {
+            if(t.type == type)
+            {
+                x += t.value;
+            }
+        }
+
+        return x;
+    }
+
+    public void UseItem(ItemType item, int value)
+    {
+        for (int i = 0; i < ItemsInInventory.Count; i++) {
+
+            if (ItemsInInventory[i].type == item)
+            {
+                ItemsInInventory[i].value -= value;
+                if (ItemsInInventory[i].value <= 0)
+                {
+                    value = Mathf.Abs(ItemsInInventory[i].value);
+                    ItemsInInventory.RemoveAt(i);
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+        }
+
+        SyncWithUI();
+    }
+
+
 
 }

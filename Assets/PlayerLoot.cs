@@ -17,6 +17,7 @@ public class PlayerLoot : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Loot"))
         {
+            Debug.Log("Loot");
             ItemContainer itemContainer = collision.gameObject.GetComponent<ItemContainer>();
             if (itemContainer.justDropped)
                 return;

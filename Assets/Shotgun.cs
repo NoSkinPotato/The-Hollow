@@ -19,20 +19,51 @@ public class Shotgun : Weapon
     [SerializeField] private float shakeStrength;
     [SerializeField] private float shakeDuration;
 
+    [SerializeField] private int currMagazine;
+    [SerializeField] private int maxMagazine;
+
+    bool onReload = false;
+
     public override void Prep()
     {
-       
+       //nothing yet
     }
 
     public override void Reload()
     {
+        Item shotgunAmmo = inventorySystem.ItemsInInventory.Find(x => x.type == ItemType.ShotgunAmmo && x.value > 0);
+        if (shotgunAmmo == null)
+            return;
+
+        onReload = true;
         playerAnimation.PlayAnimation("ActionIndex", 3);
+    }
+
+    public override void FillMagazine()
+    {
+        int ammoInInventory = inventorySystem.CountItemsByType(ItemType.ShotgunAmmo);
+        
+        if (currMagazine < maxMagazine)
+        {
+            currMagazine++;
+
+            if(currMagazine == maxMagazine)
+                playerAnimation.EndAnimation();
+        }
+
+
+        inventorySystem.UseItem(ItemType.ShotgunAmmo, 1);
     }
 
     public override void Shoot()
     {
-        if (playerAnimation.GetStopAnimation() == false)
+        if (currMagazine <= 0)
+            return;
+
+
+        if (playerAnimation.GetStopAnimation() == false || onReload)
         {
+            onReload = false;
             playerAnimation.playerAnimator.SetInteger("ActionIndex", 2);
             ShootLogic();
 
@@ -56,10 +87,7 @@ public class Shotgun : Weapon
 
     private void ShootLogic()
     {
-        if (EnoughAmmo() == false)
-        {
-            return;
-        }
+        currMagazine--;
 
         float angleStep = spreadAngle / (lineRenderers.Count - 1); 
 
@@ -75,6 +103,7 @@ public class Shotgun : Weapon
             lineRenderers[i].SetPosition(0, weaponPoint.position);
             if (hit.collider != null)
             {
+                weaponScript.DamageEnemy(hit.collider, WeaponDamage);
                 lineRenderers[i].SetPosition(1, hit.point);
             }
             else
@@ -107,9 +136,4 @@ public class Shotgun : Weapon
     }
 
 
-    private bool EnoughAmmo()
-    {
-        //Add Inventory stuff
-        return true;
-    }
 }

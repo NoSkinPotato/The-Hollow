@@ -18,6 +18,9 @@ public class Handgun : Weapon
     [SerializeField] private float shakeStrength;
     [SerializeField] private float shakeDuration;
 
+    [SerializeField] private int currMagazine;
+    [SerializeField] private int maxMagazine;
+
 
     public override void Prep()
     {
@@ -36,13 +39,46 @@ public class Handgun : Weapon
 
     public override void Reload()
     {
+        Item handGunAmmo = inventorySystem.ItemsInInventory.Find(x => x.type == ItemType.HandgunAmmo && x.value > 0);
+        if (handGunAmmo == null)
+            return;
+
         playerAnimation.PlayAnimation("ActionIndex", 3);
     }
-    
+
+    public override void FillMagazine()
+    {
+        int ammoInInventory = inventorySystem.CountItemsByType(ItemType.HandgunAmmo);
+        int difference = maxMagazine - currMagazine;
+
+
+        if (ammoInInventory > difference)
+        {
+            currMagazine = maxMagazine;
+        }
+        else
+        {
+            currMagazine += ammoInInventory;
+        }
+
+        inventorySystem.UseItem(ItemType.HandgunAmmo, difference);
+
+    }
+
     public override void Shoot()
     {
+        if(currMagazine <= 0)
+            return;
+
+        if (hit.collider != null) { 
+            weaponScript.DamageEnemy(hit.collider, WeaponDamage);
+        
+        }
+
+        //CheckInventory
         if (playerAnimation.GetStopAnimation() == false)
         {
+            currMagazine -= 1;
             playerAnimation.playerAnimator.SetInteger("ActionIndex", 2);
             ShootLogic();
 
@@ -52,11 +88,7 @@ public class Handgun : Weapon
 
     private void ShootLogic()
     {
-        if (EnoughAmmo() == false)
-        {
-
-            return;
-        }
+        if (EnoughAmmo() == false) return;
             
         StartCoroutine(ShootVisual(gunSeconds));
 

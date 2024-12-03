@@ -33,10 +33,13 @@ public class PlayerWeaponScript : MonoBehaviour
     private InventorySystem inventorySystem;
     bool onSwitch = false;
 
+    [HideInInspector]
+    public float knifeDamage;
+
     private void Start()
     {
 
-        playerState = PlayerState.OnControl;
+        playerState = PlayerState.OnAllControl;
 
         inventorySystem = InventorySystem.Instance;
         playerAnimation = PlayerAnimationControl.Instance;
@@ -46,10 +49,12 @@ public class PlayerWeaponScript : MonoBehaviour
 
     private void Update()
     {
-        if (playerState != PlayerState.OnControl)
+        if (playerState == PlayerState.RunControl || playerState == PlayerState.OffControl)
             return;
 
         Aim();
+
+        if (onSwitch == true) return;
 
         playerAnimation.playerAnimator.SetInteger("WeaponIndex", equippedWeaponIndex);
 
@@ -72,12 +77,8 @@ public class PlayerWeaponScript : MonoBehaviour
             weapons[equippedWeaponIndex].Reload();
         }
 
-        if (onSwitch == false)
-        {
-            WeaponSwitching();
+        WeaponSwitching();
 
-        }
-        
 
     }
 
@@ -118,18 +119,11 @@ public class PlayerWeaponScript : MonoBehaviour
         if (weapons.Count - 1 >= x)
         {
             equippedWeaponIndex = x;
-            StartCoroutine(SwitchTimer());
         }
            
     }
 
-    private IEnumerator SwitchTimer()
-    {
-        onSwitch = true;
-        yield return new WaitForSeconds(0.5f);
-        onSwitch = false;
-
-    }
+    
 
     private void nextWeaponIndex()
     {
@@ -167,9 +161,43 @@ public class PlayerWeaponScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
+
+    public void ReloadWeapon(int weaponIndex)
+    {
+        weapons[weaponIndex].FillMagazine();
+    }
+
+    public void OnSwitchControl(int x)
+    {
+        if (x == 0) onSwitch = false;
+        else onSwitch = true;
+    }
+
+    public void DamageEnemy(Collider2D collision, float damage)
+    {
+        EnemyStatistics stats = collision.GetComponent<EnemyStatistics>();
+        if (stats != null) {
+            stats.DamageEnemy(damage);
+        }
+        else
+        {
+            Debug.Log("Stats script not found");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            DamageEnemy(collision, knifeDamage);
+        }
+    }
+
+    
+
 }
 
 public enum PlayerState
 {
-    OnControl, OffControl
+    OnAllControl, OffControl, RunControl, NoMovementControl
 }
