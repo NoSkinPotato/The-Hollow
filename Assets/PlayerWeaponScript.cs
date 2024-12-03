@@ -123,10 +123,7 @@ public class PlayerWeaponScript : MonoBehaviour
            
     }
 
-    public void OnSwitchControl(bool x)
-    {
-        onSwitch = x;
-    }
+    
 
     private void nextWeaponIndex()
     {
@@ -168,6 +165,12 @@ public class PlayerWeaponScript : MonoBehaviour
     public void ReloadWeapon(int weaponIndex)
     {
         weapons[weaponIndex].FillMagazine();
+    }
+
+    public void OnSwitchControl(int x)
+    {
+        if (x == 0) onSwitch = false;
+        else onSwitch = true;
     }
 
     public void DamageEnemy(Collider2D collision, float damage)
