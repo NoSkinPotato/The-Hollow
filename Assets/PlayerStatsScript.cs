@@ -21,6 +21,7 @@ public class PlayerStatsScript : MonoBehaviour
     public void DamagePlayerBy(float damage)
     {
         PlayerHealth -= damage;
+        if (PlayerHealth < 0) PlayerHealth = 0;
     }
 
     public float GetCurrentPlayerHealth()
@@ -33,4 +34,16 @@ public class PlayerStatsScript : MonoBehaviour
         return PlayerMaxHealth;
     }
 
+    public void HealPlayer(float health)
+    {
+        float x = PlayerHealth + health;
+        if(x >= PlayerMaxHealth)
+        {
+            PlayerHealth = PlayerMaxHealth;
+        }
+        else
+        {
+            PlayerHealth = x;
+        }
+    }
 }

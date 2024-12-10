@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 8383942650733991764}
   - component: {fileID: 7283142381180681202}
   - component: {fileID: 6288911451281263534}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: TuyulStats
   m_TagString: EnemyDetector
   m_Icon: {fileID: 0}

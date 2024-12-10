@@ -14,7 +14,7 @@ public class SoundSignal : MonoBehaviour
         switch (currLevel)
         {
             case SoundLevel.Silent:
-                col.radius = 4;
+                col.radius = 2;
                 break;
             case SoundLevel.Medium:
                 col.radius = 12;

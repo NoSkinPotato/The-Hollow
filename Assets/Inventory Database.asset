@@ -28,4 +28,14 @@ MonoBehaviour:
     name: Rifle Ammo
     ValuePerAmount: 10
     OnHealth: 0
+  - type: 3
+    maxValue: 2
+    name: Medkit
+    ValuePerAmount: 100
+    OnHealth: 1
+  - type: 4
+    maxValue: 5
+    name: Bandage
+    ValuePerAmount: 25
+    OnHealth: 1
   MaxInventorySlot: 3

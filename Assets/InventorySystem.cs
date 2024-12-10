@@ -34,6 +34,7 @@ public class InventorySystem : MonoBehaviour
     private PlayerAnimationControl playerScript;
     private PlayerWeaponScript playerWeaponScript;
     private UIManager UImanager;
+    private PlayerStatsScript statsScript;
     public bool inventoryOpen = false;
 
     bool updatingInventory = false;
@@ -43,6 +44,7 @@ public class InventorySystem : MonoBehaviour
         playerScript = PlayerAnimationControl.Instance;
         playerWeaponScript = PlayerWeaponScript.Instance;
         UImanager = UIManager.Instance;
+        statsScript = PlayerStatsScript.Instance;
 
         //SyncWithUI
 
@@ -119,8 +121,9 @@ public class InventorySystem : MonoBehaviour
         if (amountLooted > 0)
         {
             //Add Notifications
-            UImanager.LootUI(new Item(item.name, amountLooted));
-            Debug.Log("Looted: " + amountLooted + "x " + item.type.ToString());
+            string itemName = inventoryDatabase.itemDatabase.Find(x => x.type == item.type).name;
+
+            UImanager.LootUI(new Item(itemName, amountLooted));
 
             if(item.value > 0)
             {
@@ -305,6 +308,21 @@ public class InventorySystem : MonoBehaviour
         SyncWithUI();
     }
 
+    public void HealWithItem(Item item)
+    {
+        ItemStats stats = inventoryDatabase.itemDatabase.Find(x => x.type == item.type);
 
+        if (stats != null)
+        {
+            int value = stats.ValuePerAmount;
+            statsScript.HealPlayer(value);
+            UseItem(item.type, 1);
+
+        }
+        else
+        {
+            Debug.Log("Inventory Data has not been inserted for Item Type : " + item.type);
+        }
+    }
 
 }

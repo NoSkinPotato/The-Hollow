@@ -8,7 +8,6 @@ public class InventoryInteraction : MonoBehaviour
     [SerializeField] private GameObject useButton;
     [SerializeField] private GameObject dropButton;
     private InventorySystem inventorySystem;
-
     private void Start()
     {
         inventorySystem = InventorySystem.Instance;
@@ -30,6 +29,7 @@ public class InventoryInteraction : MonoBehaviour
     public void OnUse()
     {
         //IncreasePlayerHealth
+        inventorySystem.HealWithItem(interactedItem);
         gameObject.SetActive(false);
 
     }

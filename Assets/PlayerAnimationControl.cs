@@ -46,4 +46,9 @@ public class PlayerAnimationControl : MonoBehaviour
         return playerAnimator.GetBool("StopAnimation");
     }
 
+    public void EndKnifeAnimation()
+    {
+        playerAnimator.SetBool("StopAnimation", false);
+        PlayAnimation("ActionIndex", 0);
+    }
 }

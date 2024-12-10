@@ -25,6 +25,7 @@ public class EnemyStatistics : MonoBehaviour
 
     public void AttackPlayer()
     {
+        
         animator.SetBool("Attack", true);
     }
 
@@ -40,6 +41,8 @@ public class EnemyStatistics : MonoBehaviour
 
     public void DamageEnemy(float damage)
     {
+        AgroEnemy();
+
         enemyHealth -= damage;
         if (enemyHealth <= 0)
             DeadEnemy();

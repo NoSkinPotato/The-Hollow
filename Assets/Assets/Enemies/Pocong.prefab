@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 8493110544797698302}
   - component: {fileID: 6293322246157362996}
   - component: {fileID: 5960879768573616960}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: PocongStats
   m_TagString: EnemyDetector
   m_Icon: {fileID: 0}

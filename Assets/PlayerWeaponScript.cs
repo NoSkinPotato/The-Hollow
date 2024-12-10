@@ -183,7 +183,10 @@ public class PlayerWeaponScript : MonoBehaviour
 
     public void DamageEnemy(Collider2D collision, float damage)
     {
-        EnemyStatistics stats = collision.GetComponent<EnemyStatistics>();
+        if (!collision.gameObject.CompareTag("Enemy")) return;
+
+
+        EnemyStatistics stats = collision.GetComponentInChildren<EnemyStatistics>();
         if (stats != null) {
             stats.DamageEnemy(damage);
         }

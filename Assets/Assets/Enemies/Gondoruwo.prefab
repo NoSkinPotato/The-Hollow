@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 8517738389287756412}
   - component: {fileID: 3985685797556108008}
   - component: {fileID: 8890767428682900300}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: GondoruwoStats
   m_TagString: EnemyDetector
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81736d6991f22fe429c62c94db6619ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDamage: 25
+  enemyDamage: 20
   enemyHealth: 250
   animator: {fileID: 319449108494113132}
   colliders:

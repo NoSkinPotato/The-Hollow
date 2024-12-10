@@ -8,6 +8,7 @@ public class Item
 
     public ItemType type;
     public int value;
+    [HideInInspector]
     public string name;
     public bool useOnHealth;
 
@@ -30,5 +31,5 @@ public class Item
 
 public enum ItemType
 {
-    HandgunAmmo, ShotgunAmmo, RifleAmmo
+    HandgunAmmo, ShotgunAmmo, RifleAmmo, Medkit, Bandage
 }

@@ -47,7 +47,11 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (weaponScript.playerState == PlayerState.OffControl || weaponScript.playerState == PlayerState.NoMovementControl)
+        {
+            Debug.Log("Return");
             return;
+        }
+            
 
         if(weaponScript.playerState == PlayerState.OnAllControl)
         {

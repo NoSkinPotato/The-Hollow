@@ -10,7 +10,6 @@ public class KnifeHitBox : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Knife");
             PlayerWeaponScript.DamageEnemy(collision, PlayerWeaponScript.knifeDamage);
         }
     }
