@@ -28,13 +28,15 @@ public class PlayerWeaponScript : MonoBehaviour
 
     public List<Weapon> weapons = new List<Weapon>();
     private bool justShoot = false;
-    [SerializeField] private int equippedWeaponIndex = 0;
+    public int equippedWeaponIndex = 0;
     private PlayerAnimationControl playerAnimation;
     private InventorySystem inventorySystem;
     bool onSwitch = false;
 
     [HideInInspector]
     public float knifeDamage;
+    public int currMagazine;
+
 
     private void Start()
     {
@@ -114,6 +116,11 @@ public class PlayerWeaponScript : MonoBehaviour
         }
     }
 
+    public void pushCurrMagazine(int curr)
+    {
+        currMagazine = curr;
+    }
+
     private void SwitchWeapon(int x)
     {
         if (weapons.Count - 1 >= x)
@@ -121,6 +128,7 @@ public class PlayerWeaponScript : MonoBehaviour
             equippedWeaponIndex = x;
         }
            
+        StartCoroutine(UIManager.Instance.TriggerWeaponWheel(x));
     }
 
     
@@ -185,14 +193,12 @@ public class PlayerWeaponScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            DamageEnemy(collision, knifeDamage);
-        }
+    public void ReloadSoundWeapon(int weaponIndex) {
+
+        weapons[weaponIndex].ReloadSound();
     }
 
+    
     
 
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a506e5dc7599d448979342abaec1e4f, type: 3}
+  m_Name: Enemy Database
+  m_EditorClassIdentifier: 
+  enemyDatabase:
+  - name: Tuyul (4)
+    prefab: {fileID: 6607797956024896430, guid: cce927827167ffd42b6e59ec4d72b9d5, type: 3}
+  - name: Tuyul (8)
+    prefab: {fileID: 416353325188727438, guid: c73a00b0c02228a45b599eadb3eb1f28, type: 3}
+  - name: Genderuwo
+    prefab: {fileID: 288320854432249247, guid: e8bfd4df42e1fa442a8dcc8f43c02edc, type: 3}
+  - name: Pocong
+    prefab: {fileID: 3531622727371261639, guid: d26393b8bd0d1094d8bff31817a1eecd, type: 3}

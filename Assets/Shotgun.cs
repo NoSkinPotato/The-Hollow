@@ -27,12 +27,15 @@ public class Shotgun : Weapon
     public override void Prep()
     {
        //nothing yet
+        weaponScript.pushCurrMagazine(currMagazine);
+
+
     }
 
     public override void Reload()
     {
         Item shotgunAmmo = inventorySystem.ItemsInInventory.Find(x => x.type == ItemType.ShotgunAmmo && x.value > 0);
-        if (shotgunAmmo == null)
+        if (shotgunAmmo == null || currMagazine >= maxMagazine)
             return;
 
         onReload = true;
@@ -43,16 +46,27 @@ public class Shotgun : Weapon
     {
         int ammoInInventory = inventorySystem.CountItemsByType(ItemType.ShotgunAmmo);
         
-        if (currMagazine < maxMagazine)
+        if (ammoInInventory > 0 && currMagazine < maxMagazine)
         {
             currMagazine++;
+            ammoInInventory--;
 
-            if(currMagazine == maxMagazine)
+
+            if(ammoInInventory <= 0 || currMagazine >= maxMagazine)
+            {
                 playerAnimation.EndAnimation();
+                playerAnimation.PlayAnimation("ActionIndex", 1);
+            }
+                
         }
 
 
         inventorySystem.UseItem(ItemType.ShotgunAmmo, 1);
+    }
+
+    public override void ReloadSound()
+    {
+        audioManager.Play("ShotgunReload");
     }
 
     public override void Shoot()
@@ -60,13 +74,14 @@ public class Shotgun : Weapon
         if (currMagazine <= 0)
             return;
 
+        
 
         if (playerAnimation.GetStopAnimation() == false || onReload)
         {
             onReload = false;
             playerAnimation.playerAnimator.SetInteger("ActionIndex", 2);
             ShootLogic();
-
+            audioManager.Play("ShotgunShot");
             playerAnimation.StopAnimation();
         }
     }

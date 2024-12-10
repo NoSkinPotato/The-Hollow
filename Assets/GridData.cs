@@ -12,6 +12,7 @@ public class GridData : MonoBehaviour
     public List<Sprite> sprites = new List<Sprite>();
     [HideInInspector]
     public Vector2Int offset;
+    private PlayerAnimationControl player;
 
     private void Awake()
     {
@@ -39,6 +40,11 @@ public class GridData : MonoBehaviour
     public Node[,] nodes;
 
     public Tilemap tileMap;
+
+    private void Start()
+    {
+        player = PlayerAnimationControl.Instance;
+    }
 
     private void InitializeGrid()
     {
@@ -73,6 +79,55 @@ public class GridData : MonoBehaviour
         int y = Mathf.FloorToInt(pos.y / cellSize);
 
         return nodes[x, y];
+    }
+
+
+    public Vector2 FindSpawnPointFromPlayer(int maxDistance, int minDistance)
+    {
+        Vector2[] allDirections = { Vector2.up, Vector2.down, Vector2.left, Vector2.right, new(1, 1), new(1, -1), new(-1, 1), new(-1, -1) };
+
+        Shuffle(allDirections);
+
+        Vector2 playerPos = player.playerPosition.position;
+        playerPos.x = Mathf.FloorToInt(playerPos.x);
+        playerPos.y = Mathf.FloorToInt(playerPos.y);
+
+        for (int j = 0; j < allDirections.Length; j++)
+        {
+            int maximum = 0;
+            for (int i = 0; i < maxDistance - minDistance; i++)
+            {
+                Vector2 spawn = playerPos + allDirections[j] * (minDistance + i);
+
+                if (GetNodeFromWorldPosition(spawn).IsWalkable == false)
+                {
+                    maximum = i;
+                    break;
+                }
+
+            }
+
+            if(maximum > 0)
+            {
+                int index = Random.Range(minDistance, minDistance + maximum);
+                return (playerPos + allDirections[j] * index);
+
+            }
+        }
+
+        return Vector2.zero;
+    }
+
+    void Shuffle(Vector2[] array)
+    {
+        for (int i = array.Length - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+
+            Vector2 temp = array[i];
+            array[i] = array[randomIndex];
+            array[randomIndex] = temp;
+        }
     }
 
 

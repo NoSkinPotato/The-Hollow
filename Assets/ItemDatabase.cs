@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ItemDatabase : ScriptableObject
 {
-    public List<ItemStats> itemDatabase = new List<ItemStats>();
+    public List<ItemStats> itemDatabase = new List<ItemStats> ();
     public int MaxInventorySlot = 10;
 }
 
@@ -14,6 +14,7 @@ public class ItemStats
 {
     public ItemType type;
     public int maxValue;
+    public string name;
     public int ValuePerAmount;
     public bool OnHealth;
 }

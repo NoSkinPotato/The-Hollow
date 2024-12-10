@@ -9,6 +9,7 @@ public abstract class Weapon: MonoBehaviour
     protected PlayerWeaponScript weaponScript;
     protected CameraControl cameraControl;
     protected InventorySystem inventorySystem;
+    protected AudioManager audioManager;
 
     public float WeaponDamage;
 
@@ -17,7 +18,8 @@ public abstract class Weapon: MonoBehaviour
         playerAnimation = PlayerAnimationControl.Instance;
         weaponScript = PlayerWeaponScript.Instance;
         cameraControl = CameraControl.Instance; 
-        inventorySystem = InventorySystem.Instance; 
+        inventorySystem = InventorySystem.Instance;
+        audioManager = AudioManager.Instance;
     }
 
     public abstract void Prep();
@@ -26,5 +28,7 @@ public abstract class Weapon: MonoBehaviour
     public abstract void Reload();
 
     public abstract void FillMagazine();
+
+    public abstract void ReloadSound();
 
 }

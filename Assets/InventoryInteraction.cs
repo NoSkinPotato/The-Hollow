@@ -16,9 +16,6 @@ public class InventoryInteraction : MonoBehaviour
 
     public void InteractItem(Vector2 pos, Item item, bool usable)
     {
-
-
-
         interactedItem = item;
 
         if (!usable)
@@ -27,25 +24,19 @@ public class InventoryInteraction : MonoBehaviour
             useButton.SetActive(true);
 
         transform.position = pos;
-
-
     }
 
 
     public void OnUse()
     {
         //IncreasePlayerHealth
-
         gameObject.SetActive(false);
 
     }
 
     public void OnDrop()
     {
-
         inventorySystem.DropItem(interactedItem);
-
-
         gameObject.SetActive(false);
     }
 

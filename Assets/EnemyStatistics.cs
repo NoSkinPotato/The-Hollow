@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class EnemyStatistics : MonoBehaviour
@@ -11,14 +12,16 @@ public class EnemyStatistics : MonoBehaviour
 
     private PlayerStatsScript playerStatsScript;
 
+    [SerializeField] private List<Collider2D> colliders = new List<Collider2D>();
+
     public EnemyState enemyState;
 
     private void Start()
     {
         playerStatsScript = PlayerStatsScript.Instance;
-        enemyState = EnemyState.Active;
+        enemyState = EnemyState.Idle;
+        DoColliders(true);
     }
-
 
     public void AttackPlayer()
     {
@@ -40,13 +43,38 @@ public class EnemyStatistics : MonoBehaviour
         enemyHealth -= damage;
         if (enemyHealth <= 0)
             DeadEnemy();
-
     }
 
     private void DeadEnemy()
     {
         enemyState = EnemyState.Dead;
         animator.SetBool("Dead", true);
+
+        DoColliders(false);
     }
 
+    private void DoColliders(bool x)
+    {
+        foreach (Collider2D col in colliders)
+        {
+            col.enabled = x;
+        }
+    }
+
+    public void AgroEnemy()
+    {
+        if (enemyState == EnemyState.Idle)
+        {
+            enemyState = EnemyState.Active;
+            animator.SetBool("Active", true);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            AgroEnemy();
+        }
+    }
 }

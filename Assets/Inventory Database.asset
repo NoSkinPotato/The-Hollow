@@ -15,11 +15,17 @@ MonoBehaviour:
   itemDatabase:
   - type: 0
     maxValue: 25
+    name: Handgun Ammo
     ValuePerAmount: 50
+    OnHealth: 0
   - type: 1
     maxValue: 10
+    name: Shotgun Ammo
     ValuePerAmount: 3
+    OnHealth: 0
   - type: 2
     maxValue: 25
+    name: Rifle Ammo
     ValuePerAmount: 10
+    OnHealth: 0
   MaxInventorySlot: 3

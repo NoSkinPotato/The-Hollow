@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eccfbb5635885674d9eb11fa479cce23, type: 3}
+  m_Name: GlobalAudio
+  m_EditorClassIdentifier: 
+  SoundDatabase:
+  - title: HandgunShot
+    clip: {fileID: 8300000, guid: 0ec2786762b271a498385d3219a38edb, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - title: HandgunReload
+    clip: {fileID: 8300000, guid: ecdb8b6480c5cf44da39250a0a5a8f53, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - title: ShotgunReload
+    clip: {fileID: 8300000, guid: 9c73352486d91ea4aa4c851716e01b7a, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - title: ShotgunShot
+    clip: {fileID: 8300000, guid: ae9e285865dcfb044b541c8de54b7bdc, type: 3}
+    volume: 0.15
+    pitch: 1.25
+    loop: 0
+    source: {fileID: 0}
+  - title: RifleShot
+    clip: {fileID: 8300000, guid: b977cc30ee29f6a4d8025e91d60eb1f2, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - title: RifleReload
+    clip: {fileID: 8300000, guid: 44fbfd2582c919b4fa2aa7fe7de12879, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - title: KnifeAttack
+    clip: {fileID: 8300000, guid: f9c4752b44316c24fbf650a5073f616d, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

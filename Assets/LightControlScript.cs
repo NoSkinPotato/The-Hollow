@@ -51,6 +51,10 @@ public class LightControlScript : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, hit.point);
                 SpriteRenderer sprite = collider.gameObject.GetComponent<SpriteRenderer>();
+
+                if (sprite == null || hit.collider.gameObject.name.StartsWith("Pocong"))
+                    continue;
+
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemies") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
                 {
 

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8218225607520435371}
   - component: {fileID: 7198758034572516147}
-  - component: {fileID: 2935553021566517043}
   - component: {fileID: 2843009075355620590}
+  - component: {fileID: 7993136440030268311}
   m_Layer: 0
   m_Name: Item
   m_TagString: Loot
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23151ed6817747f43bbefff0813fbd30, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,8 +86,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2935553021566517043
-CircleCollider2D:
+--- !u!114 &2843009075355620590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2725907370917820075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6d929af4f342745b33ae3e57bfbad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  justDropped: 0
+  containedItem:
+    type: 1
+    value: 10
+    useOnHealth: 0
+--- !u!61 &7993136440030268311
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,23 +135,16 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0184775, y: 0.0012318492}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.2857143, y: 1.2857143}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &2843009075355620590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2725907370917820075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac6d929af4f342745b33ae3e57bfbad7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  justDropped: 0
-  containedItem:
-    type: 1
-    value: 10
-    useOnHealth: 0
+  m_Size: {x: 0.92849565, y: 0.72155464}
+  m_EdgeRadius: 0

@@ -33,6 +33,7 @@ public class InventorySystem : MonoBehaviour
     private int amountLooted;
     private PlayerAnimationControl playerScript;
     private PlayerWeaponScript playerWeaponScript;
+    private UIManager UImanager;
     public bool inventoryOpen = false;
 
     bool updatingInventory = false;
@@ -41,6 +42,7 @@ public class InventorySystem : MonoBehaviour
     {
         playerScript = PlayerAnimationControl.Instance;
         playerWeaponScript = PlayerWeaponScript.Instance;
+        UImanager = UIManager.Instance;
 
         //SyncWithUI
 
@@ -65,7 +67,6 @@ public class InventorySystem : MonoBehaviour
 
             playerScript.playerAnimator.SetBool("OnInventory", inventoryOpen);
             StartCoroutine(SetInventoryUI());
-
         }
     }
 
@@ -118,6 +119,7 @@ public class InventorySystem : MonoBehaviour
         if (amountLooted > 0)
         {
             //Add Notifications
+            UImanager.LootUI(new Item(item.name, amountLooted));
             Debug.Log("Looted: " + amountLooted + "x " + item.type.ToString());
 
             if(item.value > 0)
@@ -134,10 +136,6 @@ public class InventorySystem : MonoBehaviour
         return true;
     }
 
-    public void GetItem(ItemType type, int value)
-    {
-
-    }
     
     private bool InsertItem(Item item)
     {
@@ -194,7 +192,7 @@ public class InventorySystem : MonoBehaviour
     {
         if(ItemsInInventory.Count < inventoryDatabase.MaxInventorySlot)
         {
-            Item newItem = new Item(item.type, item.value, item.useOnHealth);
+            Item newItem = new Item(item.type, item.value, item.useOnHealth, item.name);
             ItemsInInventory.Add(newItem);
             amountLooted += item.value;
             item.value = 0;

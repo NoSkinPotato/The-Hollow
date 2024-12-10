@@ -58,8 +58,9 @@ public class EnemyAI : MonoBehaviour
     
     private void GoToPlayer()
     {
-        enemyPathfinder.StopPF();
-        
+        if (enemyPathfinder != null) enemyPathfinder.StopPF();
+
+
 
         if (Vector2.Distance(transform.position, playerPosition) <= AttackDistance + rangeBuffer &&
             Vector2.Distance(transform.position, playerPosition) >= AttackDistance - rangeBuffer)
@@ -72,6 +73,9 @@ public class EnemyAI : MonoBehaviour
         rb.transform.position += (Vector3)direction * movementSpeed * Time.fixedDeltaTime;
     }
 
-
+    private void Damageplayer()
+    {
+        stats.DamagePlayer();
+    }
 
 }

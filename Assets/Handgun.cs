@@ -22,6 +22,7 @@ public class Handgun : Weapon
     [SerializeField] private int maxMagazine;
 
 
+
     public override void Prep()
     {
         hit = Physics2D.Raycast(weaponPoint.position, weaponScript.direction, 100f, targetLayer);
@@ -35,16 +36,24 @@ public class Handgun : Weapon
         {
             lineRenderer.SetPosition(1, (Vector2)weaponPoint.position + (Vector2)weaponScript.direction * 100f);
         }
+
+        weaponScript.pushCurrMagazine(currMagazine);
     }
 
     public override void Reload()
     {
         Item handGunAmmo = inventorySystem.ItemsInInventory.Find(x => x.type == ItemType.HandgunAmmo && x.value > 0);
-        if (handGunAmmo == null)
+        if (handGunAmmo == null || currMagazine >= maxMagazine)
             return;
 
         playerAnimation.PlayAnimation("ActionIndex", 3);
     }
+
+    public override void ReloadSound()
+    {
+        audioManager.Play("HandgunReload");
+    }
+
 
     public override void FillMagazine()
     {
@@ -70,18 +79,21 @@ public class Handgun : Weapon
         if(currMagazine <= 0)
             return;
 
+
+
         if (hit.collider != null) { 
             weaponScript.DamageEnemy(hit.collider, WeaponDamage);
         
         }
 
+        
         //CheckInventory
         if (playerAnimation.GetStopAnimation() == false)
         {
             currMagazine -= 1;
             playerAnimation.playerAnimator.SetInteger("ActionIndex", 2);
             ShootLogic();
-
+            audioManager.Play("HandgunShot");
             playerAnimation.StopAnimation();
         }
     }

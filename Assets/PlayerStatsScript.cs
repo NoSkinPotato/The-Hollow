@@ -18,13 +18,19 @@ public class PlayerStatsScript : MonoBehaviour
     [SerializeField] private float PlayerHealth;
     [SerializeField] private float PlayerMaxHealth;
 
-
-
-
-
     public void DamagePlayerBy(float damage)
     {
         PlayerHealth -= damage;
+    }
+
+    public float GetCurrentPlayerHealth()
+    {
+        return PlayerHealth;
+    }
+
+    public float GetPlayerMaxHealth()
+    {
+        return PlayerMaxHealth;
     }
 
 }

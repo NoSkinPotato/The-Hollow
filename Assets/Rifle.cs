@@ -46,19 +46,25 @@ public class Rifle : Weapon
             if (currMagazine <= 0)
                 return;
 
-
+            audioManager.Play("RifleShot");
             playerAnimation.playerAnimator.SetInteger("ActionIndex", 2);
             ShootLogic();
             playerAnimation.StopAnimation();
             
         }
 
+        weaponScript.pushCurrMagazine(currMagazine);
+    }
+
+    public override void ReloadSound()
+    {
+        audioManager.Play("RifleReload");
     }
 
     public override void Reload()
     {
         Item rifleAmmo = inventorySystem.ItemsInInventory.Find(x => x.type == ItemType.RifleAmmo && x.value > 0);
-        if (rifleAmmo == null)
+        if (rifleAmmo == null || currMagazine >= maxMagazine)
             return;
 
         playerAnimation.PlayAnimation("ActionIndex", 3);

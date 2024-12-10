@@ -12,6 +12,10 @@ public class SlotUIScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private TextMeshProUGUI amountMesh;
 
+    [SerializeField] private Color noItemColor;
+    [SerializeField] private Color itemColor;
+    [SerializeField] private Color hoverColor;
+
     public bool clicked = false;
     public Item containedItem = null;
     private InventorySystem inventorySystem;
@@ -19,7 +23,6 @@ public class SlotUIScript : MonoBehaviour
     private void Start()
     {
         inventorySystem = InventorySystem.Instance;
-        containedItem = null;
     }
 
 
@@ -31,6 +34,7 @@ public class SlotUIScript : MonoBehaviour
         amountMesh.enabled = true;
         amountMesh.text = item.value.ToString();
         containedItem = item;
+        slotImage.color = itemColor;
     }
 
     public void RemoveItem()
@@ -40,24 +44,16 @@ public class SlotUIScript : MonoBehaviour
         amountMesh.enabled = false;
         containedItem = null;
         clicked = false;
+        slotImage.color = noItemColor;
     }
 
     public void OnClick()
     {
+
         if (containedItem == null)
             return;
 
-
-        if(clicked == true)
-        {
-            inventorySystem.DeactivateDisplayInteraction();
-            clicked = false;
-            return;
-        }
-
-
-
-        if (containedItem != null)
+        if (containedItem != null && containedItem.value != 0)
         {
 
             inventorySystem.DisplayInteraction(Input.mousePosition, containedItem);
@@ -66,6 +62,33 @@ public class SlotUIScript : MonoBehaviour
         else
         {
             Debug.Log("Clicked Item Do not Contain an Item");
+        }
+        
+    }
+
+    public void OnHover(bool x)
+    {
+        if (x && containedItem != null)
+        {
+            slotImage.color = hoverColor;
+
+            textMesh.color = itemColor;
+            amountMesh.color = itemColor;
+        }
+        else
+        {
+            textMesh.color = Color.white;
+            amountMesh.color = Color.white;
+
+            if (containedItem == null || containedItem.value == 0)
+            {
+                slotImage.color = noItemColor;
+            }
+            else
+            {
+                slotImage.color = itemColor;
+            }
+
         }
         
     }
