@@ -9,7 +9,8 @@ public class Node
     public int GCost;          
     public int HCost;          
     public int FCost => GCost + HCost; 
-    public Node parent;         
+    public Node parent;
+    public bool hasObject;
 
     public Node(Vector2Int position, bool isWalkable)
     {

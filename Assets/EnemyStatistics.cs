@@ -10,6 +10,8 @@ public class EnemyStatistics : MonoBehaviour
     [SerializeField] private float enemyHealth;
     [SerializeField] private Animator animator;
 
+    private float enemyMaxHealth;
+
     private PlayerStatsScript playerStatsScript;
 
     [SerializeField] private List<Collider2D> colliders = new List<Collider2D>();
@@ -18,6 +20,7 @@ public class EnemyStatistics : MonoBehaviour
 
     private void Start()
     {
+        enemyMaxHealth = enemyHealth;
         playerStatsScript = PlayerStatsScript.Instance;
         enemyState = EnemyState.Idle;
         DoColliders(true);
@@ -32,6 +35,16 @@ public class EnemyStatistics : MonoBehaviour
     public void StopAtkPlayer()
     {
         animator.SetBool("Attack", false);
+    }
+
+    public float GetEnemyHealth()
+    {
+        return enemyHealth;
+    }
+
+    public float GetEnemyMaxHealth()
+    {
+        return enemyMaxHealth;
     }
 
     public void DamagePlayer()

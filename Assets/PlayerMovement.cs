@@ -27,6 +27,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (weaponScript.playerState == PlayerState.OffControl || weaponScript.playerState == PlayerState.NoMovementControl)
+        {
+            return;
+        }
+
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
@@ -48,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (weaponScript.playerState == PlayerState.OffControl || weaponScript.playerState == PlayerState.NoMovementControl)
         {
-            Debug.Log("Return");
             return;
         }
             

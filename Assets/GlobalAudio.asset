@@ -55,3 +55,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - title: Hover
+    clip: {fileID: 8300000, guid: 24a0c213312121e44a5476825fdc759f, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - title: Click
+    clip: {fileID: 8300000, guid: 2fc905fda86357642b30eaf0baf118ca, type: 3}
+    volume: 0.075
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

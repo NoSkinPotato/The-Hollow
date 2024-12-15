@@ -19,8 +19,6 @@ public class Shotgun : Weapon
     [SerializeField] private float shakeStrength;
     [SerializeField] private float shakeDuration;
 
-    [SerializeField] private int currMagazine;
-    [SerializeField] private int maxMagazine;
 
     bool onReload = false;
 

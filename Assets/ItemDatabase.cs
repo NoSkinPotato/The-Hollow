@@ -17,4 +17,6 @@ public class ItemStats
     public string name;
     public int ValuePerAmount;
     public bool OnHealth;
+    public int SpawnChance;
+    public int rank;
 }

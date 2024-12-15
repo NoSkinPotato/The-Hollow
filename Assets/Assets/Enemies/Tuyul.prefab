@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 772438997209865447}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7124548, w: 0.701718}
-  m_LocalPosition: {x: 123.2, y: -71.52, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81736d6991f22fe429c62c94db6619ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDamage: 5
+  enemyDamage: 2.5
   enemyHealth: 25
   animator: {fileID: 147623684588817962}
   colliders:

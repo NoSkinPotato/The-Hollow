@@ -36,7 +36,7 @@ public class InventorySystem : MonoBehaviour
     private UIManager UImanager;
     private PlayerStatsScript statsScript;
     public bool inventoryOpen = false;
-
+    public bool noInventoryUse = false;
     bool updatingInventory = false;
 
     private void Start()
@@ -55,12 +55,17 @@ public class InventorySystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && updatingInventory == false && playerScript.GetStopAnimation() == false)
+        if (Input.GetKeyDown(KeyCode.Tab) && updatingInventory == false && playerScript.GetStopAnimation() == false && noInventoryUse == false)
         {
             if (inventoryOpen == false)
+            {
                 playerWeaponScript.playerState = PlayerState.OffControl;
+            }
             else
+            {
                 playerWeaponScript.playerState = PlayerState.OnAllControl;
+            }
+                
 
             updatingInventory = true;
             inventoryOpen = !inventoryOpen;

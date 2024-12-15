@@ -8,9 +8,11 @@ public class InventoryInteraction : MonoBehaviour
     [SerializeField] private GameObject useButton;
     [SerializeField] private GameObject dropButton;
     private InventorySystem inventorySystem;
+    private AudioManager audioManager;
     private void Start()
     {
         inventorySystem = InventorySystem.Instance;
+        audioManager = AudioManager.Instance;
     }
 
     public void InteractItem(Vector2 pos, Item item, bool usable)
@@ -28,6 +30,7 @@ public class InventoryInteraction : MonoBehaviour
 
     public void OnUse()
     {
+        audioManager.Play("Click");
         //IncreasePlayerHealth
         inventorySystem.HealWithItem(interactedItem);
         gameObject.SetActive(false);
@@ -36,6 +39,7 @@ public class InventoryInteraction : MonoBehaviour
 
     public void OnDrop()
     {
+        audioManager.Play("Click");
         inventorySystem.DropItem(interactedItem);
         gameObject.SetActive(false);
     }

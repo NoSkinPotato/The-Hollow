@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerLoot : MonoBehaviour
 {
     private InventorySystem inventorySystem;
+    private UIManager UIManager;
 
     private void Start()
     {
         inventorySystem = InventorySystem.Instance;
+        UIManager = UIManager.Instance;
     }
 
 
@@ -26,6 +28,11 @@ public class PlayerLoot : MonoBehaviour
                 Destroy(collision.gameObject);
 
             }
+
+        }else if (collision.gameObject.CompareTag("Note"))
+        {
+            UIManager.LootNote();
+            Destroy(collision.gameObject);
         }
 
     }

@@ -10,7 +10,6 @@ public class GridData : MonoBehaviour
     public static GridData Instance { get; private set; }
     public GameObject game;
     public List<Sprite> sprites = new List<Sprite>();
-    [HideInInspector]
     public Vector2Int offset;
     private PlayerAnimationControl player;
 
@@ -39,7 +38,8 @@ public class GridData : MonoBehaviour
 
     public Node[,] nodes;
 
-    public Tilemap tileMap;
+    public Tilemap wallTileMap;
+    public Tilemap floorTileMap;
 
     private void Start()
     {
@@ -49,15 +49,16 @@ public class GridData : MonoBehaviour
     private void InitializeGrid()
     {
         nodes = new Node[gridWidth, gridHeight];
-        BoundsInt bounds = tileMap.cellBounds;
+        BoundsInt bounds = wallTileMap.cellBounds;
         offset = new Vector2Int(-bounds.xMin, -bounds.yMin);
 
         foreach (Vector3Int vector3Int in bounds.allPositionsWithin)
         {
 
             bool isWalkable = true;
-            Sprite s = tileMap.GetSprite(vector3Int);
-            if (s != null)
+            Sprite s = wallTileMap.GetSprite(vector3Int);
+            Sprite s1 = floorTileMap.GetSprite(vector3Int);
+            if (s != null || s1 == null)
             {
                 isWalkable = false; 
             }

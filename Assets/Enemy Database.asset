@@ -15,9 +15,21 @@ MonoBehaviour:
   enemyDatabase:
   - name: Tuyul (4)
     prefab: {fileID: 6607797956024896430, guid: cce927827167ffd42b6e59ec4d72b9d5, type: 3}
-  - name: Tuyul (8)
-    prefab: {fileID: 416353325188727438, guid: c73a00b0c02228a45b599eadb3eb1f28, type: 3}
-  - name: Genderuwo
-    prefab: {fileID: 288320854432249247, guid: e8bfd4df42e1fa442a8dcc8f43c02edc, type: 3}
+    spawnChance: 30
+    rank: 5
+    size: {x: 1, y: 1}
   - name: Pocong
     prefab: {fileID: 3531622727371261639, guid: d26393b8bd0d1094d8bff31817a1eecd, type: 3}
+    spawnChance: 30
+    rank: 15
+    size: {x: 1, y: 1}
+  - name: Tuyul (8)
+    prefab: {fileID: 416353325188727438, guid: c73a00b0c02228a45b599eadb3eb1f28, type: 3}
+    spawnChance: 25
+    rank: 10
+    size: {x: 2, y: 2}
+  - name: Genderuwo
+    prefab: {fileID: 288320854432249247, guid: e8bfd4df42e1fa442a8dcc8f43c02edc, type: 3}
+    spawnChance: 15
+    rank: 30
+    size: {x: 2, y: 4}

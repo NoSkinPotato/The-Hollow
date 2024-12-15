@@ -22,8 +22,6 @@ public class Rifle : Weapon
     [Range(0f, .5f)]
     [SerializeField] private float recoilAcceleration;
 
-    [SerializeField] private int currMagazine;
-    [SerializeField] private int maxMagazine;
 
 
     private bool isShooting = false;

@@ -11,6 +11,7 @@ public class PocongScript : MonoBehaviour
     [SerializeField] private float damageRate;
     [SerializeField] private LayerMask mask;
     [SerializeField] private float timeSpliced;
+    [SerializeField] private float maxDistanceFromPlayer = 5f;
 
     float timer = 0;
     float splice = 0;
@@ -24,6 +25,8 @@ public class PocongScript : MonoBehaviour
     [HideInInspector]
     public bool onLight = false;
     public bool damagePlayer = false;
+
+    bool justLowHealth = false;
 
     private void Start()
     {
@@ -50,6 +53,10 @@ public class PocongScript : MonoBehaviour
             TeleportIn(); 
         }
 
+        if (Vector2.Distance(player.playerPosition.position, transform.position) > maxDistanceFromPlayer && teleport == false)
+        {
+            teleport = true;
+        }
 
         if(spriteRenderer.enabled == true)
         {
@@ -61,6 +68,13 @@ public class PocongScript : MonoBehaviour
         {
             HurtPlayer();
         }
+
+    }
+
+    private void ActivatePocong(bool x)
+    {
+        spriteRenderer.enabled = x;
+        collide.enabled = x;
     }
 
     private void LightControl()
@@ -69,7 +83,7 @@ public class PocongScript : MonoBehaviour
 
         if (splice >= timeSpliced)
         {
-            Vector2 direction = player.playerPosition.position - transform.position;
+            Vector2 direction = (player.playerPosition.position - transform.position).normalized;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 15f, mask);
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Player"))
             {

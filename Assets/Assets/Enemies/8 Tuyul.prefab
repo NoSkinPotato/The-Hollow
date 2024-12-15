@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 416353325188727438}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234.43578, y: -138.67648, z: 0.024885323}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -53,11 +53,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 124.16
+      value: 0.254
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -71.324
+      value: 0.221
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -113,13 +113,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tuyul (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1346779573787859742, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
+      propertyPath: m_Mass
+      value: 0.0568664
+      objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 123.521
+      value: 0.342
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -71.54
+      value: -0.293
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -175,13 +179,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tuyul (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1346779573787859742, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
+      propertyPath: m_Mass
+      value: 0.05686643
+      objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 123.882
+      value: -0.303
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -71.50699
+      value: -0.229
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -237,13 +245,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tuyul (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1346779573787859742, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
+      propertyPath: m_Mass
+      value: 0.0568664
+      objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 123.238
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -71.298
+      value: -0.381
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -299,13 +311,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tuyul
       objectReference: {fileID: 0}
+    - target: {fileID: 1346779573787859742, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
+      propertyPath: m_Mass
+      value: 0.056866415
+      objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 123.491
+      value: -0.405
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -71.109
+      value: 0.098
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -361,13 +377,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tuyul (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1346779573787859742, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
+      propertyPath: m_Mass
+      value: 0.056866415
+      objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 123.843
+      value: 0.518
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -71.231
+      value: 0.014
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -423,13 +443,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tuyul (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1346779573787859742, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
+      propertyPath: m_Mass
+      value: 0.0568664
+      objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 123.612
+      value: -0.132
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -70.793
+      value: 0.373
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -485,13 +509,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tuyul (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1346779573787859742, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
+      propertyPath: m_Mass
+      value: 0.056866415
+      objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 124.069
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -70.914
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5281864938963864689, guid: 24090645e373abb47a6ca9abe65eab26, type: 3}
       propertyPath: m_LocalPosition.z

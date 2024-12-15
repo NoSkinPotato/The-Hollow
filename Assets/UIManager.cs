@@ -39,7 +39,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Image> wheelWeapons;
 
     [SerializeField] private LootUIScript lootUIScript;
-    
+
+    [SerializeField] private GameObject lootNoteUI;
+    [SerializeField] private NumPadScript numPadScript; 
+
 
     private float wheelOpacity = 0.94f;
 
@@ -116,4 +119,17 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void LootNote()
+    {
+        numPadScript.FoundNote();
+        StartCoroutine(LootNoteUI());
+    }
+
+
+    public IEnumerator LootNoteUI()
+    {
+        lootNoteUI.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        lootNoteUI.SetActive(false);
+    }
 }

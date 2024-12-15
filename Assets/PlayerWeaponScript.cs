@@ -201,9 +201,33 @@ public class PlayerWeaponScript : MonoBehaviour
         weapons[weaponIndex].ReloadSound();
     }
 
-    
-    
 
+    public string GenerateWeaponInMag()
+    {
+        string temp = "";
+
+        for (int i = 1; i < weapons.Count; i++)
+        {
+            if (i > 1) temp += "-";
+            temp += weapons[i].currMagazine.ToString();
+        }
+
+        return temp;
+    }
+
+    public void FillWeaponsMag(string codes)
+    {
+        if (codes.Length == 0) return;
+
+        Debug.Log("Decrypting " + codes);
+        string[] ammoCounts = codes.Split('-');
+
+        for (int i = 1; i < weapons.Count; i++)
+        {
+            weapons[i].currMagazine = int.Parse(ammoCounts[i - 1]);
+        }
+
+    }
 }
 
 public enum PlayerState

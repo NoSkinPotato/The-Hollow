@@ -55,7 +55,7 @@ public class LightControlScript : MonoBehaviour
                 if (sprite == null || hit.collider.gameObject.name.StartsWith("Pocong"))
                     continue;
 
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemies") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemies") || hit.collider.gameObject.layer == LayerMask.NameToLayer("Default") )
                 {
 
                     sprite.enabled = true;

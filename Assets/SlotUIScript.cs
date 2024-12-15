@@ -12,6 +12,8 @@ public class SlotUIScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textMesh;
     [SerializeField] private TextMeshProUGUI amountMesh;
 
+    private AudioManager audioManager;
+
     [SerializeField] private Color noItemColor;
     [SerializeField] private Color itemColor;
     [SerializeField] private Color hoverColor;
@@ -23,6 +25,7 @@ public class SlotUIScript : MonoBehaviour
     private void Start()
     {
         inventorySystem = InventorySystem.Instance;
+        audioManager = AudioManager.Instance;
     }
 
 
@@ -55,7 +58,7 @@ public class SlotUIScript : MonoBehaviour
 
         if (containedItem != null && containedItem.value != 0)
         {
-
+            audioManager.Play("Click");
             inventorySystem.DisplayInteraction(Input.mousePosition, containedItem);
             clicked = true;
         }
@@ -70,6 +73,7 @@ public class SlotUIScript : MonoBehaviour
     {
         if (x && containedItem != null)
         {
+            audioManager.Play("Hover");
             slotImage.color = hoverColor;
 
             textMesh.color = itemColor;

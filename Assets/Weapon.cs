@@ -12,6 +12,8 @@ public abstract class Weapon: MonoBehaviour
     protected AudioManager audioManager;
 
     public float WeaponDamage;
+    public int currMagazine;
+    public int maxMagazine;
 
     protected void Start()
     {
