@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DeathScreen : MonoBehaviour
@@ -26,9 +27,10 @@ public class DeathScreen : MonoBehaviour
 
     public IEnumerator StartDeathScreen()
     {
+        
         deathScreen.enabled = true;
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1f);
 
         deathText.SetActive(true);
 
@@ -44,6 +46,7 @@ public class DeathScreen : MonoBehaviour
     public void BackToMenu()
     {
         Time.timeScale = 1;
+        SceneManager.LoadScene(0);
 
     }
 

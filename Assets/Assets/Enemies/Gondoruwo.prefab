@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -449762757
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: -1546091354, guid: cd8b9a8d73ea7a04fb6eaff06e22aed2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -245,12 +245,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDamage: 15
-  enemyHealth: 180
+  enemyHealth: 275
   animator: {fileID: 319449108494113132}
   colliders:
   - {fileID: 4160574428586926740}
   - {fileID: 8890767428682900300}
   enemyState: 0
+  enemyName: 2
+  AudioSource1: {fileID: 0}
+  AudioSource2: {fileID: 0}
 --- !u!58 &8890767428682900300
 CircleCollider2D:
   m_ObjectHideFlags: 0

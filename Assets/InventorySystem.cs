@@ -33,6 +33,7 @@ public class InventorySystem : MonoBehaviour
     private int amountLooted;
     private PlayerAnimationControl playerScript;
     private PlayerWeaponScript playerWeaponScript;
+    private AudioManager audioManager;
     private UIManager UImanager;
     private PlayerStatsScript statsScript;
     public bool inventoryOpen = false;
@@ -45,6 +46,7 @@ public class InventorySystem : MonoBehaviour
         playerWeaponScript = PlayerWeaponScript.Instance;
         UImanager = UIManager.Instance;
         statsScript = PlayerStatsScript.Instance;
+        audioManager = AudioManager.Instance;
 
         //SyncWithUI
 
@@ -125,6 +127,8 @@ public class InventorySystem : MonoBehaviour
         
         if (amountLooted > 0)
         {
+            audioManager.Play("Loot");
+
             //Add Notifications
             string itemName = inventoryDatabase.itemDatabase.Find(x => x.type == item.type).name;
 

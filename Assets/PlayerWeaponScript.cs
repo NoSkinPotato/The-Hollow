@@ -20,6 +20,7 @@ public class PlayerWeaponScript : MonoBehaviour
     }
 
     [SerializeField] private float distance;
+    [SerializeField] private SoundSignal soundSignal;
 
     private Camera mainCam;
     [HideInInspector]
@@ -227,6 +228,13 @@ public class PlayerWeaponScript : MonoBehaviour
             weapons[i].currMagazine = int.Parse(ammoCounts[i - 1]);
         }
 
+    }
+
+
+    public void SetSoundSignal(SoundLevel soundLevel)
+    {
+
+        soundSignal.currSoundLevel = soundLevel;
     }
 }
 

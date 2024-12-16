@@ -1,12 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -40,20 +36,26 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private DeathScreen deathScreen;
     [SerializeField] private TextMeshProUGUI daysScreen;
+    [SerializeField] private GameObject pauseScreen;
 
 
-    public int currDay;
+    public int currDay = 1;
 
     private InventorySystem inventorySystem;
     private PlayerWeaponScript playerWeaponScript;
-    private PlayerStatsScript playerStatsScript;    
+    private PlayerStatsScript playerStatsScript; 
+    private AudioManager audioManager;  
     private string filePath;
+
+    bool gamePaused = false;
 
 
 
     private void Start()
     {
-        
+        audioManager = AudioManager.Instance;
+        audioManager.Play("Horror");
+
         grid = GridData.Instance;
         inventorySystem = InventorySystem.Instance;
         playerWeaponScript = PlayerWeaponScript.Instance;
@@ -114,7 +116,7 @@ public class GameManager : MonoBehaviour
         yield return null;
 
 
-        if (currDay > 0)
+        if (currDay > 1)
         {
             StartCoroutine(numPadScript.StartGameFromWhite());
         }
@@ -123,11 +125,22 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gamePaused = !gamePaused;
+
+            PauseGame(gamePaused);
+
+        }
+    }
+
     private IEnumerator LoadGameData()
     {
-        currDay = PlayerPrefs.GetInt("Day");
-
-        StartCoroutine(DayText(2.5f));
+        currDay = PlayerPrefs.GetInt("Day", 1);
+        if (currDay == 0) currDay = 1;
+        StartCoroutine(DayText(currDay, 2.5f));
 
         if (currDay > 1)
         {
@@ -156,12 +169,12 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator DayText(float speed)
+    private IEnumerator DayText(int day, float speed)
     {
 
         yield return new WaitForSeconds(1.5f);
 
-        daysScreen.text = "Day " + currDay.ToString();
+        daysScreen.text = "Day " + day.ToString();
         daysScreen.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1.5f);
@@ -462,13 +475,15 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         ResetSave();
+        audioManager.Play("Dead");
+        audioManager.Play("DeathSound");
         StartCoroutine(deathScreen.StartDeathScreen());
 
     }
 
     private void ResetSave()
     {
-        PlayerPrefs.SetInt("Day", 0);
+        PlayerPrefs.SetInt("Day", 1);
         PlayerPrefs.SetInt("SpawnerRank", 100);
 
         PlayerPrefs.SetString("CurrMagazine", "");
@@ -482,9 +497,26 @@ public class GameManager : MonoBehaviour
     }
     
 
-    public void PauseGame()
+    public void PauseGame(bool isPaused)
     {
+        if (isPaused)
+        {
+            Time.timeScale = 0;
 
+            pauseScreen.SetActive(true);
+
+        }
+        else
+        {
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    public void PlayEnterValueSound()
+    {
+        audioManager.Play("NumpadSuccess");
+        audioManager.Play("Boom");
     }
 
 
@@ -494,3 +526,9 @@ public enum EnemyState
 {
     Active, Idle, Dead
 }
+
+public enum EnemyName
+{
+    Tuyul, Pocong, Genderuwo
+}
+

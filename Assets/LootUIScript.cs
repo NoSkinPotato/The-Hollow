@@ -16,12 +16,13 @@ public class LootUIScript : MonoBehaviour
     public List<Item> LootQueue = new List<Item>();
 
     private float Ypos;
+
+
    
 
     private void Start()
     {
         Ypos = Mathf.Abs(itemRectTransform.position.y);
-        Debug.Log("This should be 45: " + Ypos);
     }
 
     private void Update()

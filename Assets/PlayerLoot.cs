@@ -6,11 +6,13 @@ public class PlayerLoot : MonoBehaviour
 {
     private InventorySystem inventorySystem;
     private UIManager UIManager;
+    private AudioManager audioManager;
 
     private void Start()
     {
         inventorySystem = InventorySystem.Instance;
         UIManager = UIManager.Instance;
+        audioManager = AudioManager.Instance;
     }
 
 
@@ -31,6 +33,7 @@ public class PlayerLoot : MonoBehaviour
 
         }else if (collision.gameObject.CompareTag("Note"))
         {
+            audioManager.Play("Loot");
             UIManager.LootNote();
             Destroy(collision.gameObject);
         }

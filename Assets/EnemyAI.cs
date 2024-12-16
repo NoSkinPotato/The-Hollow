@@ -22,10 +22,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float rangeBuffer = 0.2f;
     [SerializeField] private float lookOffset = 90f;
     
-
+    private AudioManager audioManager;
     private void Start()
     {
         playerPosition = PlayerAnimationControl.Instance.transform.position;
+        audioManager = AudioManager.Instance;
     }
 
     private void FixedUpdate()
@@ -78,4 +79,8 @@ public class EnemyAI : MonoBehaviour
         stats.DamagePlayer();
     }
 
+    public void PlaySound(string name)
+    {
+        audioManager.Play("GenderuwoHit");
+    }
 }

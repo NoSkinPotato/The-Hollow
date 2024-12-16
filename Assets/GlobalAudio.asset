@@ -18,52 +18,180 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - title: HandgunReload
     clip: {fileID: 8300000, guid: ecdb8b6480c5cf44da39250a0a5a8f53, type: 3}
     volume: 0.1
     pitch: 1
     loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - title: ShotgunReload
     clip: {fileID: 8300000, guid: 9c73352486d91ea4aa4c851716e01b7a, type: 3}
     volume: 0.1
     pitch: 1
     loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - title: ShotgunShot
     clip: {fileID: 8300000, guid: ae9e285865dcfb044b541c8de54b7bdc, type: 3}
     volume: 0.15
     pitch: 1.25
     loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - title: RifleShot
     clip: {fileID: 8300000, guid: b977cc30ee29f6a4d8025e91d60eb1f2, type: 3}
     volume: 0.15
     pitch: 1
     loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - title: RifleReload
     clip: {fileID: 8300000, guid: 44fbfd2582c919b4fa2aa7fe7de12879, type: 3}
     volume: 0.15
     pitch: 1
     loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - title: KnifeAttack
     clip: {fileID: 8300000, guid: f9c4752b44316c24fbf650a5073f616d, type: 3}
     volume: 0.15
     pitch: 1
     loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - title: Hover
     clip: {fileID: 8300000, guid: 24a0c213312121e44a5476825fdc759f, type: 3}
     volume: 0.05
     pitch: 1
     loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - title: Click
     clip: {fileID: 8300000, guid: 2fc905fda86357642b30eaf0baf118ca, type: 3}
     volume: 0.075
     pitch: 1
     loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: NumpadClick
+    clip: {fileID: 8300000, guid: 17311cd705348b8478aa9a56783fd4c2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: NumpadError
+    clip: {fileID: 8300000, guid: 2717cbad64dd37748acfbc2602399bfc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: NumpadSuccess
+    clip: {fileID: 8300000, guid: fdd45a84294b2ff4ab2dded9580dc404, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Horror
+    clip: {fileID: 8300000, guid: 49a69e6dc66bb8d419326766c900125a, type: 3}
+    volume: 0.125
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Run1
+    clip: {fileID: 8300000, guid: 08bf59697a47d46458525b4dbe8c239f, type: 3}
+    volume: 0.075
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Run2
+    clip: {fileID: 8300000, guid: 8ecf4bcf27f682a42b4e00bfbb0ee43f, type: 3}
+    volume: 0.075
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Walk1
+    clip: {fileID: 8300000, guid: 84851bc2c8f62144e9e1824578c0d2f5, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Walk2
+    clip: {fileID: 8300000, guid: d59cbc2293c3c7a4dbf01cc130e5c525, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Inventory
+    clip: {fileID: 8300000, guid: ae5d1cd2b77df464198bf1eff66d4280, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Breath1
+    clip: {fileID: 8300000, guid: 91624d6a4e784d54a948d930367880cf, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Breath2
+    clip: {fileID: 8300000, guid: cbd2123e6a2275c43b9e584e8e2b0f86, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Loot
+    clip: {fileID: 8300000, guid: a17ef1a810a399142970353de5d8724d, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Hurt
+    clip: {fileID: 8300000, guid: 9fdfd10e3ba506645ab6fbcb6d68089c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: DeathSound
+    clip: {fileID: 8300000, guid: bd87082e5e9799b4b97fdd6251cd0152, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Dead
+    clip: {fileID: 8300000, guid: 38516cbec43d95a4a89ec3863755db21, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: GenderuwoHit
+    clip: {fileID: 8300000, guid: 319121983a2328c44970dec42df85a60, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - title: Boom
+    clip: {fileID: 8300000, guid: 8c8e07697c46fb94c970ebba7a4b3dbf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}

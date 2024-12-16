@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class NumPadScript : MonoBehaviour
 {
-    private string noteValue;
+    public string noteValue;
     [SerializeField] private TextMeshProUGUI inputValueText;
+    [SerializeField] private Image inputBackground;
     public bool hasNote = false;
     [SerializeField] private GameObject notFoundText;
     [SerializeField] private GameObject foundTextBg;
@@ -17,11 +18,16 @@ public class NumPadScript : MonoBehaviour
     [SerializeField] private float whiteSpeed;
     [SerializeField] private GameObject numpad;
 
-    private PlayerStatsScript playerStatsScript;    
+    private PlayerStatsScript playerStatsScript;   
+    private AudioManager audioManager;
+
+    private Color originalColor;
 
     private void Start()
     {
+        originalColor = inputBackground.color;
         playerStatsScript = PlayerStatsScript.Instance;
+        audioManager = AudioManager.Instance;
         inputValueText.text = "";
     }
 
@@ -42,6 +48,7 @@ public class NumPadScript : MonoBehaviour
     {
         if (inputValueText.text.Length < 7)
         {
+            audioManager.Play("NumpadClick");
             inputValueText.text += value;
         }
         
@@ -49,6 +56,8 @@ public class NumPadScript : MonoBehaviour
 
     public void ClearValue()
     {
+        inputBackground.color = originalColor;
+        audioManager.Play("NumpadClick");
         inputValueText.text = "";
     }
 
@@ -57,9 +66,16 @@ public class NumPadScript : MonoBehaviour
         //Validation
         if (inputValueText.text.Equals(noteValue))
         {
+            inputBackground.color = Color.green;
+            gameManager.PlayEnterValueSound();
             //RestartGame
             StartCoroutine(goWhite());
             numpad.SetActive(false);
+        }
+        else
+        {
+            inputBackground.color = Color.red;
+            audioManager.Play("NumpadError");
         }
     }
 
@@ -67,6 +83,8 @@ public class NumPadScript : MonoBehaviour
     private IEnumerator goWhite()
     {
         playerStatsScript.SetPlayerInvulnerability(true);
+
+        
 
         float elapsedTime = 0f; 
         float currentValue = 0f;
@@ -79,7 +97,6 @@ public class NumPadScript : MonoBehaviour
             Color color = whiteImage.color;
             color.a = currentValue;
             whiteImage.color = color;
-            Debug.Log(currentValue);
         }
 
         gameManager.NextLevel();

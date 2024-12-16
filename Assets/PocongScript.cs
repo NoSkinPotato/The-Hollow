@@ -13,6 +13,8 @@ public class PocongScript : MonoBehaviour
     [SerializeField] private float timeSpliced;
     [SerializeField] private float maxDistanceFromPlayer = 5f;
 
+    [SerializeField] private AudioSource staticSound;
+
     float timer = 0;
     float splice = 0;
 
@@ -79,7 +81,16 @@ public class PocongScript : MonoBehaviour
 
     private void LightControl()
     {
-        if (onLight == false) return;
+        if (onLight == false)
+        {
+            if (staticSound.isPlaying == true)
+            {
+                staticSound.Stop();
+            }
+            return;
+        }
+
+        
 
         if (splice >= timeSpliced)
         {
@@ -106,6 +117,11 @@ public class PocongScript : MonoBehaviour
 
     private void HurtPlayer()
     {
+        if (staticSound.isPlaying == false)
+        {
+            staticSound.Play();
+        }
+
         if (timer < damageRate) {
             timer += Time.deltaTime;
         }

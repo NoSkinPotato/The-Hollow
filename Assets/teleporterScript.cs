@@ -60,9 +60,21 @@ public class teleporterScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            playerWeaponScript.playerState = PlayerState.OnAllControl;
+
             inventorySystem.noInventoryUse = false;
-            UIInteraction.gameObject.SetActive(false);
-            numPadScript.transform.GetChild(0).gameObject.SetActive(false);
+
+            if (UIInteraction != null)
+            {
+                UIInteraction.gameObject.SetActive(false);
+            }
+            
+            if (numPadScript != null)
+            {
+                numPadScript.transform.GetChild(0).gameObject.SetActive(false);
+            }
+
+            
             touch = false;
         }
     }

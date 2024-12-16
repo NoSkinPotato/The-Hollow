@@ -5,13 +5,13 @@ using UnityEngine;
 public class SoundSignal : MonoBehaviour
 {
 
-    public SoundLevel currLevel;
+    public SoundLevel currSoundLevel;
 
     [SerializeField] private CircleCollider2D col;
 
     private void Update()
     {
-        switch (currLevel)
+        switch (currSoundLevel)
         {
             case SoundLevel.Silent:
                 col.radius = 2;

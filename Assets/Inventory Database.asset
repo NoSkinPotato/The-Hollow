@@ -44,7 +44,7 @@ MonoBehaviour:
   - type: 4
     maxValue: 5
     name: Bandage
-    ValuePerAmount: 25
+    ValuePerAmount: 30
     OnHealth: 1
     SpawnChance: 75
     rank: 15

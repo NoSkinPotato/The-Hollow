@@ -21,15 +21,26 @@ public class PlayerStatsScript : MonoBehaviour
     [SerializeField] private bool Invulnerable = false;
     [SerializeField] private GameManager GameManager;
 
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = AudioManager.Instance;
+    }
+
     public void DamagePlayerBy(float damage)
     {
         if (Invulnerable) return;
 
+        audioManager.Play("Hurt");
+
         PlayerHealth -= damage;
         if (PlayerHealth < 0)
         {
+            Invulnerable = true;
             PlayerHealth = 0;
             GameManager.EndGame();
+            gameObject.SetActive(false);
         }
         
     }

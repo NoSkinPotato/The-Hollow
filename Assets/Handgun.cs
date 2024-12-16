@@ -80,15 +80,18 @@ public class Handgun : Weapon
 
 
 
-        if (hit.collider != null) { 
-            weaponScript.DamageEnemy(hit.collider, WeaponDamage);
         
-        }
 
         
         //CheckInventory
         if (playerAnimation.GetStopAnimation() == false)
         {
+            if (hit.collider != null)
+            {
+                weaponScript.DamageEnemy(hit.collider, WeaponDamage);
+
+            }
+
             currMagazine -= 1;
             playerAnimation.playerAnimator.SetInteger("ActionIndex", 2);
             ShootLogic();

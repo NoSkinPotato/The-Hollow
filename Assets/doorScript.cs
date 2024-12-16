@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class doorScript : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class doorScript : MonoBehaviour
 
     [SerializeField] private bool allowDoor = true;
 
+    [SerializeField] private AudioSource doorCreak;
+    [SerializeField] private AudioSource doorBreak;
+
+    private bool playSound = false;
+
     private void Start()
     {
         originalAxis = transform.rotation.eulerAngles.z;
@@ -29,6 +35,12 @@ public class doorScript : MonoBehaviour
         Vector3 euler = transform.rotation.eulerAngles;
         euler.z = axis;
         transform.rotation = Quaternion.Euler(euler);
+
+        if (allowDoor == false && playSound == false)
+        {
+            doorCreak.Play();
+            playSound = true;
+        }
 
         if (closeDoor)
         {
@@ -60,6 +72,7 @@ public class doorScript : MonoBehaviour
         }
         else
         {
+            playSound = false;
             allowDoor = true;
         }
             
@@ -75,6 +88,7 @@ public class doorScript : MonoBehaviour
         }
         else
         {
+            playSound = false;
             allowDoor = true;
         }
             
@@ -93,6 +107,8 @@ public class doorScript : MonoBehaviour
             }
             else
             {
+                
+                playSound = false;
                 allowDoor = true;
             }
         }
@@ -133,7 +149,10 @@ public class doorScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            doorBreak.Play();
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<ShadowCaster2D>().enabled = false;
         }
     }
 
